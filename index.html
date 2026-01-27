@@ -1,0 +1,347 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Alejandro Medina — PhD student at Baylor University working on Quality-Diversity, Evolutionary Computation, and ML for scientific discovery. Founder of Exaptica Labs." />
+  <title>Alejandro Medina</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="#top">Alejandro Medina</a>
+        <div class="nav-links">
+          <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
+          <a href="#publications">Publications</a>
+          <a href="#cv">CV</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="kicker">PhD Student • Baylor University • Waco, TX</p>
+          <h1>Alejandro Medina</h1>
+          <p class="lead">
+            I’m a PhD student in Computer Science at Baylor University working on
+            <strong>Quality-Diversity (QD)</strong>, <strong>Evolutionary Computation</strong>, and
+            <strong>Machine Learning for scientific discovery</strong>.
+            I also lead <strong>Exaptica Labs</strong>, where I build interactive and exploratory AI systems.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#publications">See Publications</a>
+            <a class="btn" href="#cv">Download CV</a>
+          </div>
+
+          <div class="chips" aria-label="Research areas">
+            <span class="chip">Quality-Diversity</span>
+            <span class="chip">MAP-Elites</span>
+            <span class="chip">Evolutionary Computation</span>
+            <span class="chip">Reinforcement Learning</span>
+            <span class="chip">Bioinformatics</span>
+            <span class="chip">Interpretability & Visualization</span>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h2 class="card-title">Quick Links</h2>
+          <ul class="link-list">
+            <li><span class="label">Email</span><a href="mailto:alejmedinajr@gmail.com">alejmedinajr@gmail.com</a></li>
+            <li><span class="label">GitHub</span><a href="https://github.com/alejmedinajr" target="_blank" rel="noreferrer">github.com/alejmedinajr</a></li>
+            <li><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/alejmedinajr/" target="_blank" rel="noreferrer">linkedin.com/alejmedinajr</a></li>
+            <li><span class="label">Google Scholar</span><a href="#" target="_blank" rel="noreferrer">Add your Scholar URL</a></li>
+            <li><span class="label">Exaptica</span><a href="#" target="_blank" rel="noreferrer">Add Exaptica site URL</a></li>
+          </ul>
+
+          <hr class="divider" />
+
+          <div class="mini">
+            <p class="mini-title">Current Focus</p>
+            <p class="mini-text">
+              Multi-archive scheduling for robust illumination (MAS-QD) and
+              quality-diversity approaches to biological motif discovery.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="research" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Research</h2>
+          <p>
+            My work treats optimization as <strong>solution space characterization</strong>:
+            using QD to discover diverse, high-quality hypotheses and make them interpretable through
+            behavioral descriptors, visualization, and human-in-the-loop interaction.
+          </p>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>Core Themes</h3>
+            <ul class="bullets">
+              <li><strong>Quality-Diversity algorithms</strong> (MAP-Elites variants, emitters, scheduling)</li>
+              <li><strong>Scientific discovery</strong> via exploratory search (bioinformatics, behavioral data)</li>
+              <li><strong>Robust illumination</strong> across multiple descriptor views (multi-archive methods)</li>
+              <li><strong>Interpretability</strong> through archive querying, visualization, and interaction</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Methods</h3>
+            <ul class="bullets">
+              <li>MAP-Elites, emitter design, archive metrics (coverage, QD-score)</li>
+              <li>Scheduling / meta-control (bandits, adaptive routing)</li>
+              <li>Offline evaluation pipelines and reproducible experimentation</li>
+              <li>Visualization for archive inspection and trade-off analysis</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Selected Projects</h2>
+          <p>Representative projects across Quality-Diversity, bioinformatics, and interactive systems.</p>
+        </div>
+
+        <div class="grid three">
+          <article class="card project">
+            <div class="project-top">
+              <h3>MAS-QD</h3>
+              <p class="muted">Multi-Archive Scheduling for Robust Illumination</p>
+            </div>
+            <p>
+              A scheduler coordinating multiple archives and emitters to improve illumination robustness across
+              complementary descriptor views.
+            </p>
+            <div class="meta">
+              <span class="tag">QD</span><span class="tag">Scheduling</span><span class="tag">Multi-View</span>
+            </div>
+            <div class="actions">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Code</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Paper</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>QD Motif Discovery</h3>
+              <p class="muted">Illuminating DNA motif hypothesis spaces</p>
+            </div>
+            <p>
+              Framing DNA motif discovery as a quality-diversity problem to recover multiple high-quality motif hypotheses,
+              compared against standard motif discovery tools under matched criteria.
+            </p>
+            <div class="meta">
+              <span class="tag">Bioinformatics</span><span class="tag">MAP-Elites</span><span class="tag">Interpretation</span>
+            </div>
+            <div class="actions">
+              <a class="link" href="#" target="_blank" rel="noreferrer">arXiv</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>Illuminating Recommendation Spaces</h3>
+              <p class="muted">QD perspective on recommender trade-offs</p>
+            </div>
+            <p>
+              Using illumination algorithms to map diverse, high-performing recommendation policies and
+              characterize accuracy–diversity–fairness trade-offs.
+            </p>
+            <div class="meta">
+              <span class="tag">Recsys</span><span class="tag">QD</span><span class="tag">Trade-offs</span>
+            </div>
+            <div class="actions">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Code</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Demo</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>Human-in-the-Loop Archive Exploration</h3>
+              <p class="muted">Interactive querying for scientific interpretation</p>
+            </div>
+            <p>
+              UI and interaction primitives for exploring QD archives (slicing, annotation, and comparisons) to support
+              scientific and design interpretation.
+            </p>
+            <div class="meta">
+              <span class="tag">HCI</span><span class="tag">Visualization</span><span class="tag">QD</span>
+            </div>
+            <div class="actions">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Code</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Paper</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>Alcohol Consumption Phenotyping (MATRR)</h3>
+              <p class="muted">Predictive modeling of behavioral trajectories</p>
+            </div>
+            <p>
+              ML analysis of alcohol-intake trajectory classifications in nonhuman primates, evaluating stability and
+              predictive validity across modeling approaches.
+            </p>
+            <div class="meta">
+              <span class="tag">ML</span><span class="tag">Time Series</span><span class="tag">Bio</span>
+            </div>
+            <div class="actions">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Slides</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+
+          <article class="card project">
+            <div class="project-top">
+              <h3>Minecraft Flying Machines (GECCO ’23)</h3>
+              <p class="muted">Quality-Diversity for creative AI systems</p>
+            </div>
+            <p>
+              MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors.
+              Published at GECCO ’23.
+            </p>
+            <div class="meta">
+              <span class="tag">GECCO</span><span class="tag">QD</span><span class="tag">Creative AI</span>
+            </div>
+            <div class="actions">
+              <a class="link" href="#" target="_blank" rel="noreferrer">Paper</a>
+              <a class="link" href="#" target="_blank" rel="noreferrer">Code</a>
+            </div>
+          </article>
+        </div>
+
+        <p class="note">
+          Tip: replace the “Code / Paper / Demo” links above with your repository, arXiv, and project URLs as you publish them.
+        </p>
+      </div>
+    </section>
+
+    <section id="publications" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Publications</h2>
+          <p>Peer-reviewed publications and preprints.</p>
+        </div>
+
+        <div class="card">
+          <h3>Peer-Reviewed</h3>
+          <ol class="pubs">
+            <li>
+              <span class="pub-title">Evolving Flying Machines in Minecraft Using Quality Diversity.</span>
+              <span class="pub-authors">A. Medina, M. Richey, M. Mueller, J. Schrum.</span>
+              <span class="pub-venue">GECCO 2023.</span>
+              <span class="pub-links">
+                <a href="#" target="_blank" rel="noreferrer">PDF</a> ·
+                <a href="#" target="_blank" rel="noreferrer">ACM DL</a> ·
+                <a href="#" target="_blank" rel="noreferrer">Code</a>
+              </span>
+            </li>
+            <li>
+              <span class="pub-title">Prioritizing Self, Team, or Job: Trends in Sincerity in Cooperative Polls.</span>
+              <span class="pub-authors">B. Anthony, A. Medina, M. Mueller.</span>
+              <span class="pub-venue">CDVE 2022 (LNCS).</span>
+              <span class="pub-links">
+                <a href="#" target="_blank" rel="noreferrer">PDF</a> ·
+                <a href="#" target="_blank" rel="noreferrer">Springer</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h3>Preprints</h3>
+          <ol class="pubs">
+            <li>
+              <span class="pub-title">Quality-Diversity Exploration of DNA Motif Discovery.</span>
+              <span class="pub-authors">A. Medina, …</span>
+              <span class="pub-venue">arXiv preprint (under review).</span>
+              <span class="pub-links">
+                <a href="#" target="_blank" rel="noreferrer">arXiv</a> ·
+                <a href="#" target="_blank" rel="noreferrer">PDF</a> ·
+                <a href="#" target="_blank" rel="noreferrer">Code</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="cv" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>CV</h2>
+          <p>Download the latest PDF version of my curriculum vitae.</p>
+        </div>
+
+        <div class="card">
+          <p class="muted">
+            Place your CV at <code>assets/pdf/Alejandro_Medina_CV.pdf</code> and update the link below.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" href="assets/pdf/Alejandro_Medina_CV.pdf" target="_blank" rel="noreferrer">Download CV (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p>Best way to reach me is email. I’m also active on GitHub and LinkedIn.</p>
+        </div>
+
+        <div class="grid two">
+          <div class="card">
+            <h3>Get in touch</h3>
+            <ul class="link-list">
+              <li><span class="label">Email</span><a href="mailto:alejmedinajr@gmail.com">alejmedinajr@gmail.com</a></li>
+              <li><span class="label">Location</span><span>Waco, TX</span></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Elsewhere</h3>
+            <ul class="link-list">
+              <li><span class="label">GitHub</span><a href="https://github.com/alejmedinajr" target="_blank" rel="noreferrer">github.com/alejmedinajr</a></li>
+              <li><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/alejmedinajr/" target="_blank" rel="noreferrer">linkedin.com/alejmedinajr</a></li>
+              <li><span class="label">Google Scholar</span><a href="#" target="_blank" rel="noreferrer">Add your Scholar URL</a></li>
+              <li><span class="label">Exaptica</span><a href="#" target="_blank" rel="noreferrer">Add Exaptica site URL</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <footer class="footer">
+          <p class="muted">© <span id="year"></span> Alejandro Medina. Built with GitHub Pages.</p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
