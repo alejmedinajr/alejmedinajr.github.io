@@ -369,3 +369,39 @@ h1{
   .contact-buttons{ grid-template-columns: 1fr; }
   .social-btn{ justify-content: center; }
 }
+
+.section-head-row{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.see-more{
+  font-weight: 800;
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+.see-more:hover{
+  color: var(--accent-2);
+  text-decoration-color: var(--accent-2);
+}
+
+@media (max-width: 640px){
+  .section-head-row{
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+.projects-controls{
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}

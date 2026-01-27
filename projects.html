@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Projects — Alejandro Medina" />
+  <title>Projects | Alejandro Medina</title>
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="index.html#top">Alejandro Medina</a>
+        <div class="nav-links">
+          <a href="index.html#research">Research</a>
+          <a href="projects.html" aria-current="page">Projects</a>
+          <a href="index.html#publications">Publications</a>
+          <a href="index.html#cv">CV</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>All projects, organized as a browsable grid. Click “Load more” to view additional projects.</p>
+        </div>
+
+        <!-- Grid -->
+        <div id="projectsGrid" class="grid three"></div>
+
+        <!-- Controls -->
+        <div class="projects-controls">
+          <button id="loadMoreBtn" class="btn primary" type="button">Load more</button>
+          <button id="showLessBtn" class="btn" type="button">Show less</button>
+        </div>
+
+        <footer class="footer">
+          <p class="muted">© <span id="year"></span> Alejandro Medina.</p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // --- Replace these with your real project entries ---
+    // Each entry becomes a card matching your existing "project" cards.
+    const PROJECTS = [
+      {
+        title: "MAS-QD",
+        subtitle: "Multi-Archive Scheduling for Robust Illumination",
+        desc: "A scheduler coordinating multiple archives and emitters to improve illumination robustness across complementary descriptor views.",
+        tags: ["QD", "Scheduling", "Multi-View"],
+        links: [{ label: "Code", href: "#" }, { label: "Paper", href: "#" }]
+      },
+      {
+        title: "QD Motif Discovery",
+        subtitle: "Illuminating DNA motif hypothesis spaces",
+        desc: "Framing DNA motif discovery as a quality-diversity problem to recover multiple high-quality motif hypotheses, compared against standard motif discovery tools under matched criteria.",
+        tags: ["Bioinformatics", "MAP-Elites", "Interpretation"],
+        links: [{ label: "arXiv", href: "#" }, { label: "Code", href: "#" }]
+      },
+      {
+        title: "Illuminating Recommendation Spaces",
+        subtitle: "QD perspective on recommender trade-offs",
+        desc: "Using illumination algorithms to map diverse, high-performing recommendation policies and characterize accuracy–diversity–fairness trade-offs.",
+        tags: ["Recsys", "QD", "Trade-offs"],
+        links: [{ label: "Code", href: "#" }, { label: "Demo", href: "#" }]
+      },
+      {
+        title: "Human-in-the-Loop Archive Exploration",
+        subtitle: "Interactive querying for scientific interpretation",
+        desc: "UI and interaction primitives for exploring QD archives (slicing, annotation, comparisons) to support scientific and design interpretation.",
+        tags: ["HCI", "Visualization", "QD"],
+        links: [{ label: "Code", href: "#" }, { label: "Paper", href: "#" }]
+      },
+      {
+        title: "Alcohol Consumption Phenotyping (MATRR)",
+        subtitle: "Predictive modeling of behavioral trajectories",
+        desc: "ML analysis of alcohol-intake trajectory classifications in nonhuman primates, evaluating stability and predictive validity across modeling approaches.",
+        tags: ["ML", "Time Series", "Bio"],
+        links: [{ label: "Slides", href: "#" }, { label: "Code", href: "#" }]
+      },
+      {
+        title: "Minecraft Flying Machines (GECCO ’23)",
+        subtitle: "Quality-Diversity for creative AI systems",
+        desc: "MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors. Published at GECCO ’23.",
+        tags: ["GECCO", "QD", "Creative AI"],
+        links: [{ label: "Paper", href: "#" }]
+      },
+
+      // --- Add more projects below; they will appear in 3x3 pages of 9 ---
+      { title: "Project 7", subtitle: "Short descriptor", desc: "One or two sentences describing the contribution.", tags: ["Tag1","Tag2"], links: [{label:"Code", href:"#"}] },
+      { title: "Project 8", subtitle: "Short descriptor", desc: "One or two sentences describing the contribution.", tags: ["Tag1","Tag2"], links: [{label:"Code", href:"#"}] },
+      { title: "Project 9", subtitle: "Short descriptor", desc: "One or two sentences describing the contribution.", tags: ["Tag1","Tag2"], links: [{label:"Code", href:"#"}] },
+
+      { title: "Project 10", subtitle: "Short descriptor", desc: "One or two sentences describing the contribution.", tags: ["Tag1","Tag2"], links: [{label:"Code", href:"#"}] },
+      { title: "Project 11", subtitle: "Short descriptor", desc: "One or two sentences describing the contribution.", tags: ["Tag1","Tag2"], links: [{label:"Code", href:"#"}] },
+      { title: "Project 12", subtitle: "Short descriptor", desc: "One or two sentences describing the contribution.", tags: ["Tag1","Tag2"], links: [{label:"Code", href:"#"}] },
+    ];
+
+    const PAGE_SIZE = 9; // 3x3 grid
+    let visibleCount = PAGE_SIZE;
+
+    const grid = document.getElementById("projectsGrid");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+    const showLessBtn = document.getElementById("showLessBtn");
+
+    function cardHTML(p){
+      const tags = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join("");
+      const links = (p.links || []).map(l => `<a class="link" href="${l.href}" target="_blank" rel="noreferrer">${l.label}</a>`).join("");
+      return `
+        <article class="card project">
+          <div class="project-top">
+            <h3>${p.title}</h3>
+            <p class="muted">${p.subtitle || ""}</p>
+          </div>
+          <p>${p.desc || ""}</p>
+          <div class="meta">${tags}</div>
+          <div class="actions">${links}</div>
+        </article>
+      `;
+    }
+
+    function render(){
+      const slice = PROJECTS.slice(0, visibleCount);
+      grid.innerHTML = slice.map(cardHTML).join("");
+
+      loadMoreBtn.style.display = (visibleCount < PROJECTS.length) ? "inline-flex" : "none";
+      showLessBtn.style.display = (visibleCount > PAGE_SIZE) ? "inline-flex" : "none";
+    }
+
+    loadMoreBtn.addEventListener("click", () => {
+      visibleCount = Math.min(visibleCount + PAGE_SIZE, PROJECTS.length);
+      render();
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    });
+
+    showLessBtn.addEventListener("click", () => {
+      visibleCount = PAGE_SIZE;
+      render();
+      grid.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    render();
+  </script>
+</body>
+</html>
