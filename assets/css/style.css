@@ -405,3 +405,103 @@ h1{
   margin-top: 1.25rem;
   flex-wrap: wrap;
 }
+
+/* ---------- CV page accordion ---------- */
+.cv-top{ padding: 1.1rem; }
+
+.cv-identity{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cv-name{
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.cv-line{ margin: 0.25rem 0 0; }
+
+.cv-actions{
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cv-accordion{
+  margin-top: 1rem;
+}
+
+.cv-item{
+  background: rgba(15, 22, 35, 0.72);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+}
+
+.cv-item summary{
+  list-style: none;
+  cursor: pointer;
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.cv-item summary::-webkit-details-marker{ display:none; }
+
+.cv-title{
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.cv-chev{
+  color: var(--muted);
+  font-weight: 900;
+  transition: transform 0.12s ease;
+}
+
+.cv-item[open] .cv-chev{
+  transform: rotate(180deg);
+}
+
+.cv-content{
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.cv-entry{
+  margin-top: 0.85rem;
+}
+
+.cv-entry-head{
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cv-sub{
+  margin: 0.35rem 0 0.35rem;
+}
+
+.cv-subhead{
+  margin: 0.85rem 0 0.25rem;
+  font-size: 1rem;
+}
+
+.cv-split{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 720px){
+  .cv-split{ grid-template-columns: 1fr; }
+}
