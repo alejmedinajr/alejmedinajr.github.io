@@ -298,3 +298,74 @@ h1{
   color: var(--accent);
   text-decoration-color: var(--accent);
 }
+
+/* ---------- Contact (single centered card) ---------- */
+.contact-card{
+  text-align: center;
+  padding: 1.25rem;
+}
+
+.contact-email{
+  margin: 0.25rem 0 1rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.contact-email a{
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.contact-email a:hover{
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.contact-buttons{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.social-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(231,237,246,0.03);
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+  transition: transform 0.08s ease, background 0.12s ease;
+}
+
+.social-btn:hover{
+  background: rgba(231,237,246,0.06);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.social-icon{
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+
+.contact-location{
+  margin: 0;
+}
+
+/* Responsive: 2 columns on medium, 1 column on small */
+@media (max-width: 980px){
+  .contact-buttons{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px){
+  .contact-buttons{ grid-template-columns: 1fr; }
+  .social-btn{ justify-content: center; }
+}
