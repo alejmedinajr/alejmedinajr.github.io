@@ -283,3 +283,18 @@ h1{
   .grid.two, .grid.three{ grid-template-columns: 1fr; }
   .link-list li{ grid-template-columns: 80px 1fr; }
 }
+
+/* ---------- Linked publication titles ---------- */
+.link-title{
+  display: inline-block;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.link-title:hover{
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
