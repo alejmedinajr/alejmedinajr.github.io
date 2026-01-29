@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>for pookie</title>
+
+  <!-- Noindex / nofollow -->
+  <meta name="robots" content="noindex, nofollow, noimageindex" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#be123c" />
+
+  <style>
+    :root {
+      --red: rgb(244, 63, 94);        /* tasteful red */
+      --red-soft: rgba(244, 63, 94, 0.15);
+      --bg: #0b0b0f;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.65);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 56px 20px 72px;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(190,18,60,.12), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(190,18,60,.08), transparent 55%);
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      margin-bottom: 14px;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 54px);
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      backdrop-filter: blur(12px);
+    }
+
+    .timer-top {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .kicker {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .digits {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      margin-bottom: 12px;
+    }
+
+    .digit {
+      min-width: 84px;
+      text-align: center;
+    }
+
+    .num {
+      font-size: 28px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .colon {
+      font-size: 22px;
+      color: rgba(255,255,255,.35);
+      transform: translateY(-6px);
+    }
+
+    .accent { color: var(--red); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .subtle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
+      margin-top: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .box {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .done .box {
+      background: var(--red-soft);
+      border-color: rgba(244,63,94,.45);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+  </style>
+</head>
+
+<body>
+<main>
+
+  <header>
+    <div class="badge">private page</div>
+    <h1>for pookie ❤️</h1>
+    <p class="lead">A tiny corner of the internet that’s just for you.</p>
+  </header>
+
+  <section class="card">
+    <div class="timer-top">
+      <div>
+        <div class="kicker">Together since</div>
+        <div class="title" id="start-date"></div>
+      </div>
+      <div>
+        <div class="kicker">Still choosing you</div>
+        <div class="title accent">Every day</div>
+      </div>
+    </div>
+
+    <div class="digits">
+      <div class="digit"><div class="num" id="days">0</div><div class="label">days</div></div>
+      <div class="colon">:</div>
+      <div class="digit"><div class="num" id="hours">00</div><div class="label">hours</div></div>
+      <div class="colon">:</div>
+      <div class="digit"><div class="num" id="minutes">00</div><div class="label">mins</div></div>
+      <div class="colon">:</div>
+      <div class="digit"><div class="num" id="seconds">00</div><div class="label">secs</div></div>
+    </div>
+
+    <div class="subtle">(and counting)</div>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <div class="card-title">The beginning</div>
+      <p>My favorite plot twist.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">My favorite place</div>
+      <p>Wherever you are.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Us</div>
+      <p>Soft, strong, and still growing.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Tiny bucket list</div>
+      <ul>
+        <li class="done"><span class="box">✓</span> Cook together</li>
+        <li><span class="box"></span> Weekend getaway</li>
+        <li class="done"><span class="box">✓</span> Make a tradition</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    made with love
+  </footer>
+
+</main>
+
+<script>
+  const START_DATE = new Date("2023-02-14T00:00:00"); // <-- EDIT THIS
+
+  const startDateEl = document.getElementById("start-date");
+  startDateEl.textContent = START_DATE.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+
+  function updateTimer() {
+    const now = new Date();
+    const diff = Math.max(0, now - START_DATE);
+    const totalSeconds = Math.floor(diff / 1000);
+
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    document.getElementById("days").textContent = days;
+    document.getElementById("hours").textContent = pad(hours);
+    document.getElementById("minutes").textContent = pad(minutes);
+    document.getElementById("seconds").textContent = pad(seconds);
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+</body>
+</html>
