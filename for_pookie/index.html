@@ -202,8 +202,8 @@
 
   <header>
     <div class="badge">private page</div>
-    <h1>for pookie ❤️</h1>
-    <p class="lead">A tiny corner of the internet that’s just for you.</p>
+    <h1>To my beautiful girl, Angelica ❤️</h1>
+    <p class="lead">A tiny corner of the internet that’s just for you :3.</p>
   </header>
 
   <section class="card">
@@ -234,22 +234,104 @@
   <section class="grid">
     <div class="card">
       <div class="card-title">The beginning</div>
-      <p>My favorite plot twist.</p>
+      <p>Who knew that meeting one time at a conference would change our lives...</p>
     </div>
     <div class="card">
       <div class="card-title">My favorite place</div>
-      <p>Wherever you are.</p>
+      <p>Wherever you are (duh).</p>
     </div>
-    <div class="card">
-      <div class="card-title">Us</div>
-      <p>Soft, strong, and still growing.</p>
-    </div>
+    
+    
+
+
+<!-- Replace your existing "Us" card with this -->
+<div class="card">
+  <div class="card-title">A Random Photo of us that I love</div>
+
+  <div class="photo-wrap">
+    <img id="random-photo" alt="A random photo of us that I love" loading="lazy" />
+  </div>
+
+  <div class="subtle" id="photo-caption">refresh = new memory ✨</div>
+</div>
+
+<style>
+  /* Add these styles to your existing <style> block */
+  .photo-wrap {
+    margin-top: 10px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.10);
+    background: rgba(0,0,0,0.18);
+  }
+
+  .photo-wrap img {
+    width: 100%;
+    height: 240px;              /* tweak if you want taller/shorter */
+    object-fit: cover;          /* keeps it aesthetic */
+    display: block;
+  }
+</style>
+
+<script>
+  /**
+   * Add this inside your existing <script> (near the bottom is fine).
+   * Put your images in: /for_pookie/images/
+   * Example filenames: 01.jpg, 02.jpg, 03.jpg ...
+   */
+  const PHOTO_PATH = "images/"; // relative to /for_pookie/
+  const PHOTOS = [
+    "image1.jpg",
+    "image2.jpg",
+    "image3.jpg",
+    "image4.jpg",
+    "image5.jpg",
+    "image6.jpg",
+    "image7.jpg",
+  ];
+
+  function pickRandomPhoto() {
+    if (!PHOTOS.length) return null;
+    const i = Math.floor(Math.random() * PHOTOS.length);
+    return PHOTO_PATH + PHOTOS[i];
+  }
+
+  // Call once on page load
+  (function initRandomPhoto() {
+    const img = document.getElementById("random-photo");
+    if (!img) return;
+
+    const src = pickRandomPhoto();
+    if (!src) {
+      img.remove();
+      const caption = document.getElementById("photo-caption");
+      if (caption) caption.textContent = "Add images to /images/ to enable this card.";
+      return;
+    }
+
+    img.src = src;
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="card">
       <div class="card-title">Tiny bucket list</div>
       <ul>
         <li class="done"><span class="box">✓</span> Cook together</li>
-        <li><span class="box"></span> Weekend getaway</li>
-        <li class="done"><span class="box">✓</span> Make a tradition</li>
+        <li><span class="box"></span> Travel together</li>
+        <li class="done"><span class="box">✓</span> Go to the club</li>
+        <li class="done"><span class="box">✓</span> Go to a soccer game</li>
       </ul>
     </div>
   </section>
@@ -261,7 +343,7 @@
 </main>
 
 <script>
-  const START_DATE = new Date("2023-02-14T00:00:00"); // <-- EDIT THIS
+  const START_DATE = new Date("2025-07-21T00:00:00"); // <-- EDIT THIS
 
   const startDateEl = document.getElementById("start-date");
   startDateEl.textContent = START_DATE.toLocaleDateString(undefined, {
