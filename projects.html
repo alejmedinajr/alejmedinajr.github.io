@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Projects — Alejandro Medina" />
   <title>Projects | Alejandro Medina</title>
-
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
@@ -18,6 +17,7 @@
           <a href="index.html">Home</a>
           <a href="projects.html" aria-current="page">Projects</a>
           <a href="cv.html">CV</a>
+          <a href="index.html#personal">Personal</a>
           <a href="index.html#contact">Contact</a>
         </div>
       </nav>
@@ -27,15 +27,14 @@
   <main>
     <section class="section">
       <div class="container">
+
         <div class="section-head">
           <h2>Projects</h2>
-          <p>All projects, organized as a browsable grid. Click “Load more” to view additional projects.</p>
+          <p>All projects, organized as a browsable grid.</p>
         </div>
 
-        <!-- Grid -->
         <div id="projectsGrid" class="grid three"></div>
 
-        <!-- Controls -->
         <div class="projects-controls">
           <button id="loadMoreBtn" class="btn primary" type="button">Load more</button>
           <button id="showLessBtn" class="btn" type="button">Show less</button>
@@ -44,103 +43,104 @@
         <footer class="footer">
           <p class="muted">© <span id="year"></span> Alejandro Medina.</p>
         </footer>
+
       </div>
     </section>
   </main>
 
   <script>
-    // --- Replace these with your real project entries ---
-    // Each entry becomes a card matching your existing "project" cards.
     const PROJECTS = [
       {
         title: "MAS-QD",
         subtitle: "Multi-Archive Scheduling for Robust Illumination",
         desc: "A scheduler coordinating multiple archives and emitters to improve illumination robustness across complementary descriptor views.",
-        tags: ["QD", "Scheduling", "Multi-View"]//,
-        //links: [{ label: "Code", href: "#" }, { label: "Paper", href: "#" }]
+        tags: ["QD", "Scheduling", "Multi-View"]
       },
       {
         title: "QD Motif Discovery",
         subtitle: "Illuminating DNA motif hypothesis spaces",
         desc: "Framing DNA motif discovery as a quality-diversity problem to recover multiple high-quality motif hypotheses, compared against standard motif discovery tools under matched criteria.",
-        tags: ["Bioinformatics", "MAP-Elites", "Interpretation"]//,
-        //links: [{ label: "arXiv", href: "#" }, { label: "Code", href: "#" }]
+        tags: ["Bioinformatics", "MAP-Elites", "Interpretation"]
       },
       {
         title: "Illuminating Recommendation Spaces",
         subtitle: "QD perspective on recommender trade-offs",
         desc: "Using illumination algorithms to map diverse, high-performing recommendation policies and characterize accuracy–diversity–fairness trade-offs.",
-        tags: ["Recsys", "QD", "Trade-offs"]//,
-        //links: [{ label: "Code", href: "#" }, { label: "Demo", href: "#" }]
+        tags: ["Recsys", "QD", "Trade-offs"]
       },
       {
         title: "Human-in-the-Loop Archive Exploration",
         subtitle: "Interactive querying for scientific interpretation",
         desc: "UI and interaction primitives for exploring QD archives (slicing, annotation, comparisons) to support scientific and design interpretation.",
-        tags: ["HCI", "Visualization", "QD"]//,
-        //links: [{ label: "Code", href: "#" }, { label: "Paper", href: "#" }]
+        tags: ["HCI", "Visualization", "QD"]
       },
       {
-        title: "Alcohol Consumption Phenotyping (MATRR)",
+        title: "Alcohol Consumption Phenotyping",
         subtitle: "Predictive modeling of behavioral trajectories",
         desc: "ML analysis of alcohol-intake trajectory classifications in nonhuman primates, evaluating stability and predictive validity across modeling approaches.",
-        tags: ["ML", "Time Series", "Bio"] // ,
-        // links: [{ label: "Slides", href: "#" }, { label: "Code", href: "#" }]
+        tags: ["ML", "Time Series", "Bio"]
       },
       {
-        title: "Minecraft Flying Machines (GECCO ’23)",
-        subtitle: "Quality-Diversity for creative AI systems",
-        desc: "MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors. Published at GECCO ’23.",
+        title: "Minecraft Flying Machines",
+        subtitle: "Quality-Diversity for creative AI — GECCO '23",
+        desc: "MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors. Published at GECCO '23.",
         tags: ["GECCO", "QD", "Creative AI"],
-        links: [{ label: "Paper", href: "https://dl.acm.org/doi/10.1145/3583131.3590352" }]
+        links: [{ label: "Paper →", href: "https://dl.acm.org/doi/10.1145/3583131.3590352" }]
       },
-
-      // --- Add more projects below; they will appear in 3x3 pages of 9 ---
-      { title: "Dial-a-Ride Problem", subtitle: "Evaluating an earliest first deadline algorithm", desc: "Algorithmic benchmark and comparison between various existing scheduling algorithms and an earliest deadline first approach (EDF).", tags: ["Algorithms","Bechmark"], links: [{label:"Code", href:"https://github.com/alejmedinajr/ImplementingEDF"}] },
-      { title: "US Doodle Polls", subtitle: "Coopeartive polls study on how individuals prioritize schedules", desc: "Python analysis on trends in sincerity in human study across the US when considering self, team, or job.", tags: ["Analysis","Doodle Polls"], links: [{label:"Paper", href:"https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4"}] },
+      {
+        title: "Dial-a-Ride Problem",
+        subtitle: "Evaluating an earliest deadline first algorithm",
+        desc: "Algorithmic benchmark and comparison between various existing scheduling algorithms and an earliest deadline first approach (EDF).",
+        tags: ["Algorithms", "Benchmark"],
+        links: [{ label: "Code →", href: "https://github.com/alejmedinajr/ImplementingEDF" }]
+      },
+      {
+        title: "US Doodle Polls",
+        subtitle: "Cooperative polls study on priority in scheduling",
+        desc: "Python analysis on trends in sincerity in a human study across the US when considering self, team, or job.",
+        tags: ["Analysis", "Doodle Polls"],
+        links: [{ label: "Paper →", href: "https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4" }]
+      },
     ];
 
-    const PAGE_SIZE = 9; // 3x3 grid
+    const PAGE_SIZE = 9;
     let visibleCount = PAGE_SIZE;
 
-    const grid = document.getElementById("projectsGrid");
-    const loadMoreBtn = document.getElementById("loadMoreBtn");
-    const showLessBtn = document.getElementById("showLessBtn");
+    const grid       = document.getElementById('projectsGrid');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const showLessBtn = document.getElementById('showLessBtn');
 
-    function cardHTML(p){
-      const tags = (p.tags || []).map(t => `<span class="tag">${t}</span>`).join("");
-      const links = (p.links || []).map(l => `<a class="link" href="${l.href}" target="_blank" rel="noreferrer">${l.label}</a>`).join("");
+    function cardHTML(p) {
+      const tags  = (p.tags  || []).map(t => `<span class="tag">${t}</span>`).join('');
+      const links = (p.links || []).map(l => `<a class="link" href="${l.href}" target="_blank" rel="noreferrer">${l.label}</a>`).join('');
       return `
         <article class="card project">
           <div class="project-top">
             <h3>${p.title}</h3>
-            <p class="muted">${p.subtitle || ""}</p>
+            ${p.subtitle ? `<p class="muted">${p.subtitle}</p>` : ''}
           </div>
-          <p>${p.desc || ""}</p>
+          <p>${p.desc || ''}</p>
           <div class="meta">${tags}</div>
           <div class="actions">${links}</div>
         </article>
       `;
     }
 
-    function render(){
-      const slice = PROJECTS.slice(0, visibleCount);
-      grid.innerHTML = slice.map(cardHTML).join("");
-
-      loadMoreBtn.style.display = (visibleCount < PROJECTS.length) ? "inline-flex" : "none";
-      showLessBtn.style.display = (visibleCount > PAGE_SIZE) ? "inline-flex" : "none";
+    function render() {
+      grid.innerHTML = PROJECTS.slice(0, visibleCount).map(cardHTML).join('');
+      loadMoreBtn.style.display = visibleCount < PROJECTS.length ? 'inline-flex' : 'none';
+      showLessBtn.style.display = visibleCount > PAGE_SIZE      ? 'inline-flex' : 'none';
     }
 
-    loadMoreBtn.addEventListener("click", () => {
+    loadMoreBtn.addEventListener('click', () => {
       visibleCount = Math.min(visibleCount + PAGE_SIZE, PROJECTS.length);
       render();
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     });
-
-    showLessBtn.addEventListener("click", () => {
+    showLessBtn.addEventListener('click', () => {
       visibleCount = PAGE_SIZE;
       render();
-      grid.scrollIntoView({ behavior: "smooth", block: "start" });
+      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
