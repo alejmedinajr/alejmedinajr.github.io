@@ -12,12 +12,11 @@
   <header class="site-header">
     <div class="container">
       <nav class="nav">
-        <a class="brand" href="index.html#top">Alejandro Medina</a>
+        <a class="brand" href="index.html">Alejandro Medina</a>
         <div class="nav-links">
-          <a href="index.html">Home</a>
           <a href="projects.html" aria-current="page">Projects</a>
           <a href="cv.html">CV</a>
-          <a href="index.html#personal">Personal</a>
+          <a href="personal.html">Personal</a>
           <a href="index.html#contact">Contact</a>
         </div>
       </nav>
@@ -25,10 +24,11 @@
   </header>
 
   <main>
-    <section class="section">
+    <section class="section" style="padding-top:calc(var(--nav-h) + 3rem);">
       <div class="container">
 
         <div class="section-head">
+          <p class="section-kicker">Work</p>
           <h2>Projects</h2>
           <p>All projects, organized as a browsable grid.</p>
         </div>
@@ -41,7 +41,7 @@
         </div>
 
         <footer class="footer">
-          <p class="muted">© <span id="year"></span> Alejandro Medina.</p>
+          <p>© <span id="year"></span> Alejandro Medina.</p>
         </footer>
 
       </div>
@@ -50,63 +50,19 @@
 
   <script>
     const PROJECTS = [
-      {
-        title: "MAS-QD",
-        subtitle: "Multi-Archive Scheduling for Robust Illumination",
-        desc: "A scheduler coordinating multiple archives and emitters to improve illumination robustness across complementary descriptor views.",
-        tags: ["QD", "Scheduling", "Multi-View"]
-      },
-      {
-        title: "QD Motif Discovery",
-        subtitle: "Illuminating DNA motif hypothesis spaces",
-        desc: "Framing DNA motif discovery as a quality-diversity problem to recover multiple high-quality motif hypotheses, compared against standard motif discovery tools under matched criteria.",
-        tags: ["Bioinformatics", "MAP-Elites", "Interpretation"]
-      },
-      {
-        title: "Illuminating Recommendation Spaces",
-        subtitle: "QD perspective on recommender trade-offs",
-        desc: "Using illumination algorithms to map diverse, high-performing recommendation policies and characterize accuracy–diversity–fairness trade-offs.",
-        tags: ["Recsys", "QD", "Trade-offs"]
-      },
-      {
-        title: "Human-in-the-Loop Archive Exploration",
-        subtitle: "Interactive querying for scientific interpretation",
-        desc: "UI and interaction primitives for exploring QD archives (slicing, annotation, comparisons) to support scientific and design interpretation.",
-        tags: ["HCI", "Visualization", "QD"]
-      },
-      {
-        title: "Alcohol Consumption Phenotyping",
-        subtitle: "Predictive modeling of behavioral trajectories",
-        desc: "ML analysis of alcohol-intake trajectory classifications in nonhuman primates, evaluating stability and predictive validity across modeling approaches.",
-        tags: ["ML", "Time Series", "Bio"]
-      },
-      {
-        title: "Minecraft Flying Machines",
-        subtitle: "Quality-Diversity for creative AI — GECCO '23",
-        desc: "MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors. Published at GECCO '23.",
-        tags: ["GECCO", "QD", "Creative AI"],
-        links: [{ label: "Paper →", href: "https://dl.acm.org/doi/10.1145/3583131.3590352" }]
-      },
-      {
-        title: "Dial-a-Ride Problem",
-        subtitle: "Evaluating an earliest deadline first algorithm",
-        desc: "Algorithmic benchmark and comparison between various existing scheduling algorithms and an earliest deadline first approach (EDF).",
-        tags: ["Algorithms", "Benchmark"],
-        links: [{ label: "Code →", href: "https://github.com/alejmedinajr/ImplementingEDF" }]
-      },
-      {
-        title: "US Doodle Polls",
-        subtitle: "Cooperative polls study on priority in scheduling",
-        desc: "Python analysis on trends in sincerity in a human study across the US when considering self, team, or job.",
-        tags: ["Analysis", "Doodle Polls"],
-        links: [{ label: "Paper →", href: "https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4" }]
-      },
+      { title: 'MAS-QD', subtitle: 'Multi-Archive Scheduling for Robust Illumination', desc: 'A scheduler coordinating multiple archives and emitters to improve illumination robustness across complementary descriptor views.', tags: ['QD', 'Scheduling', 'Multi-View'] },
+      { title: 'QD Motif Discovery', subtitle: 'Illuminating DNA motif hypothesis spaces', desc: 'Framing DNA motif discovery as a quality-diversity problem to recover multiple high-quality motif hypotheses, compared against standard tools under matched criteria.', tags: ['Bioinformatics', 'MAP-Elites', 'Interpretation'] },
+      { title: 'Illuminating Recommendation Spaces', subtitle: 'QD perspective on recommender trade-offs', desc: 'Using illumination algorithms to map diverse, high-performing recommendation policies and characterize accuracy–diversity–fairness trade-offs.', tags: ['Recsys', 'QD', 'Trade-offs'] },
+      { title: 'Human-in-the-Loop Archive Exploration', subtitle: 'Interactive querying for scientific interpretation', desc: 'UI and interaction primitives for exploring QD archives (slicing, annotation, comparisons) to support scientific and design interpretation.', tags: ['HCI', 'Visualization', 'QD'] },
+      { title: 'Alcohol Consumption Phenotyping', subtitle: 'Predictive modeling of behavioral trajectories', desc: 'ML analysis of alcohol-intake trajectory classifications in nonhuman primates, evaluating stability and predictive validity across modeling approaches.', tags: ['ML', 'Time Series', 'Bio'] },
+      { title: 'Minecraft Flying Machines', subtitle: "Quality-Diversity for creative AI — GECCO '23", desc: 'MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors. Published at GECCO \'23.', tags: ['GECCO', 'QD', 'Creative AI'], links: [{ label: 'Paper →', href: 'https://dl.acm.org/doi/10.1145/3583131.3590352' }] },
+      { title: 'Dial-a-Ride Problem', subtitle: 'Evaluating an earliest deadline first algorithm', desc: 'Algorithmic benchmark and comparison between various existing scheduling algorithms and an earliest deadline first approach (EDF).', tags: ['Algorithms', 'Benchmark'], links: [{ label: 'Code →', href: 'https://github.com/alejmedinajr/ImplementingEDF' }] },
+      { title: 'US Doodle Polls', subtitle: 'Cooperative polls study on priority in scheduling', desc: 'Python analysis on trends in sincerity in a human study across the US when considering self, team, or job.', tags: ['Analysis', 'Doodle Polls'], links: [{ label: 'Paper →', href: 'https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4' }] },
     ];
 
     const PAGE_SIZE = 9;
     let visibleCount = PAGE_SIZE;
-
-    const grid       = document.getElementById('projectsGrid');
+    const grid = document.getElementById('projectsGrid');
     const loadMoreBtn = document.getElementById('loadMoreBtn');
     const showLessBtn = document.getElementById('showLessBtn');
 
@@ -132,16 +88,8 @@
       showLessBtn.style.display = visibleCount > PAGE_SIZE      ? 'inline-flex' : 'none';
     }
 
-    loadMoreBtn.addEventListener('click', () => {
-      visibleCount = Math.min(visibleCount + PAGE_SIZE, PROJECTS.length);
-      render();
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    });
-    showLessBtn.addEventListener('click', () => {
-      visibleCount = PAGE_SIZE;
-      render();
-      grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    loadMoreBtn.addEventListener('click', () => { visibleCount = Math.min(visibleCount + PAGE_SIZE, PROJECTS.length); render(); });
+    showLessBtn.addEventListener('click', () => { visibleCount = PAGE_SIZE; render(); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
 
     document.getElementById('year').textContent = new Date().getFullYear();
     render();

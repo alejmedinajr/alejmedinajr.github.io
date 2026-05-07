@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Personal — Alejandro Medina" />
+  <title>Personal | Alejandro Medina</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a class="brand" href="index.html">Alejandro Medina</a>
+        <div class="nav-links">
+          <a href="projects.html">Projects</a>
+          <a href="cv.html">CV</a>
+          <a href="personal.html" aria-current="page">Personal</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Hero -->
+      <div class="personal-hero">
+        <p class="section-kicker">Beyond the Lab</p>
+        <h1>Personal Life</h1>
+        <p>Outside of research I stay active — running four days a week and lifting six. Below is my current weekly training schedule. Each card shows the day's run (if any) and weight training focus. Click a card to see the full workout.</p>
+      </div>
+
+      <!-- 7-card grid -->
+      <div class="day-grid" id="dayGrid"></div>
+
+    </div>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.4rem;" id="modalBadges"></div>
+          <div class="cv-name" id="modalTitle" style="font-size:1.1rem;"></div>
+        </div>
+        <button class="modal-close" id="modalClose">✕ Close</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+  // ── DATA ─────────────────────────────────────────────────────
+  const PLAN = [
+    {
+      label: 'Monday', short: 'MON',
+      tag: 'UPPER BODY A', focus: 'Push — Chest · Shoulders · Triceps',
+      goal: 'Max Strength', run: 'Intervals',
+      blocks: [
+        { name: 'Warm-Up', dur: '10 min', type: 'warmup', exercises: [
+          { name: 'Weighted Jump Rope',     sets: '5',  reps: '1 min on / 15 sec off', notes: 'Weighted handles — elevate HR, prime shoulders' },
+          { name: 'Scapular Push-Ups',      sets: '3',  reps: '10',                    notes: 'Activate serratus anterior' },
+          { name: 'DB Cuban Press',         sets: '2',  reps: '10',                    notes: 'External rotation warm-up' },
+        ]},
+        { name: 'Strength A — Horizontal Press', dur: '18 min', type: 'main', exercises: [
+          { name: 'Barbell Bench Press',    sets: '5',  reps: '3',                     notes: '90% 1RM — max strength, 3–4 min rest' },
+          { name: 'Close-Grip Bench Press', sets: '4',  reps: '5',                     notes: 'Tricep dominant, controlled eccentric' },
+        ]},
+        { name: 'Strength B — Vertical Press', dur: '13 min', type: 'main', exercises: [
+          { name: 'Barbell Strict OHP',     sets: '5',  reps: '4',                     notes: 'No leg drive, elbows forward' },
+          { name: 'DB Arnold Press',        sets: '4',  reps: '6–8',                   notes: 'Full rotation through ROM, 90 sec rest' },
+        ]},
+        { name: 'Hypertrophy Finisher', dur: '12 min', type: 'main', exercises: [
+          { name: 'Incline DB Press',       sets: '3',  reps: '10–12',                 notes: 'Deep stretch at bottom' },
+          { name: 'DB Lateral Raises',      sets: '4',  reps: '15',                    notes: 'Slow 3-sec eccentric, no swing' },
+          { name: 'Weighted Tricep Dips',   sets: '3',  reps: '8–10',                  notes: 'Add weight via vest or between legs' },
+        ]},
+        { name: 'Core Finisher', dur: '12 min', type: 'core', exercises: [
+          { name: 'Ab Wheel Rollout',       sets: '4',  reps: '10',                    notes: 'Full extension, no hip sag — 45 sec rest' },
+          { name: 'Weighted Plank (Vest)',  sets: '3',  reps: '45 sec',                notes: 'Posterior pelvic tilt, squeeze glutes' },
+          { name: 'Hanging Knee Raise',     sets: '3',  reps: '15',                    notes: 'Slow and controlled, no swing' },
+          { name: 'DB Side Bend',           sets: '3',  reps: '12/side',               notes: 'Oblique focus, full range' },
+        ]},
+      ]
+    },
+    {
+      label: 'Tuesday', short: 'TUE',
+      tag: 'LOWER BODY A', focus: 'Quad & Power — Squat Pattern · Explosiveness',
+      goal: 'Strength + Power', run: 'Tempo',
+      blocks: [
+        { name: 'Warm-Up', dur: '10 min', type: 'warmup', exercises: [
+          { name: 'Weighted Jump Rope',        sets: '5',  reps: '1 min on / 15 sec off', notes: 'Weighted handles — prime ankles, calves, hip flexors' },
+          { name: 'KB Goblet Squat',           sets: '3',  reps: '10',                    notes: 'Deep, controlled, warm knees and hips' },
+          { name: 'Hip 90/90 Stretch',         sets: '2',  reps: '60 sec/side',           notes: 'Open hip flexors' },
+        ]},
+        { name: 'Strength A — Primary Squat', dur: '18 min', type: 'main', exercises: [
+          { name: 'Barbell Back Squat',        sets: '5',  reps: '3–4',                   notes: '88–92% 1RM, 4 min rest — go heavy' },
+          { name: 'Barbell Front Squat',       sets: '4',  reps: '5',                     notes: 'Upright torso, quad bias, 2 min rest' },
+        ]},
+        { name: 'Power Block', dur: '11 min', type: 'main', exercises: [
+          { name: 'Box Jump (Weighted Vest)',  sets: '5',  reps: '4',                     notes: 'Full reset each rep, max height' },
+          { name: 'KB Swing',                  sets: '5',  reps: '10',                    notes: 'Heavy KB — explosive hip drive' },
+        ]},
+        { name: 'Unilateral Strength', dur: '11 min', type: 'main', exercises: [
+          { name: 'Bulgarian Split Squat',     sets: '4',  reps: '6/side',                notes: 'Heavy DBs, rear foot elevated high' },
+          { name: 'DB Walking Lunge',          sets: '3',  reps: '10/side',               notes: 'Upright torso, full stride' },
+        ]},
+        { name: 'Core Finisher', dur: '10 min', type: 'core', exercises: [
+          { name: 'Barbell Landmine Rotation', sets: '4',  reps: '10/side',               notes: 'Rotational core power — control the arc' },
+          { name: 'Weighted Sit-Up (Plate)',   sets: '3',  reps: '15',                    notes: 'Full ROM, plate at chest' },
+          { name: 'Hollow Body Hold',          sets: '3',  reps: '30 sec',                notes: 'Lower back pressed into floor throughout' },
+        ]},
+      ]
+    },
+    {
+      label: 'Wednesday', short: 'WED',
+      tag: 'FULL BODY A', focus: 'Olympic Strength — Power Cleans · Heavy Compounds',
+      goal: 'Athletic Power', run: null,
+      blocks: [
+        { name: 'Warm-Up', dur: '10 min', type: 'warmup', exercises: [
+          { name: 'Weighted Jump Rope',      sets: '5',  reps: '1 min on / 15 sec off', notes: 'Weighted handles — full body prime before heavy compounds' },
+          { name: 'Barbell Good Mornings',   sets: '3',  reps: '10',                    notes: 'Light — posterior chain primer' },
+          { name: 'Dead Hang',               sets: '2',  reps: '30 sec',                notes: 'Decompress spine, grip activation' },
+        ]},
+        { name: 'Olympic Power Block', dur: '18 min', type: 'main', exercises: [
+          { name: 'Barbell Power Clean',     sets: '6',  reps: '3',                     notes: 'Moderate load — technique + explosion, 3 min rest' },
+          { name: 'Push Press (Barbell)',    sets: '5',  reps: '4',                     notes: 'Drive from legs, lockout overhead, 2 min rest' },
+        ]},
+        { name: 'Strength Block', dur: '13 min', type: 'main', exercises: [
+          { name: 'Barbell Deadlift',        sets: '4',  reps: '4',                     notes: '85%+ 1RM — conventional, 3 min rest' },
+          { name: 'Weighted Pull-Ups (Vest)',sets: '4',  reps: '5–6',                   notes: 'Dead hang start, full ROM' },
+        ]},
+        { name: 'Full Body Circuit', dur: '10 min', type: 'main', exercises: [
+          { name: 'KB Thruster',             sets: '4',  reps: '8',                     notes: 'Squat to press, explosive — minimal rest' },
+          { name: 'DB Renegade Row',         sets: '4',  reps: '8/side',                notes: 'Rigid plank, no hip rotation' },
+          { name: 'Farmer Carry (DBs)',      sets: '4',  reps: '40m',                   notes: 'Heavy, upright posture' },
+        ]},
+        { name: 'Core Finisher', dur: '14 min', type: 'core', exercises: [
+          { name: 'Dragon Flag',             sets: '4',  reps: '6',                     notes: 'Tuck if needed — full body tension' },
+          { name: 'Pallof Press (KB anchor)',sets: '3',  reps: '12/side',               notes: 'Anti-rotation — slow and deliberate' },
+          { name: 'Ab Wheel Rollout',        sets: '3',  reps: '10',                    notes: 'Full extension, brace hard' },
+          { name: 'Dead Bug (DB hold)',      sets: '3',  reps: '8/side',                notes: 'Opposite arm/leg — lower back glued to floor' },
+        ]},
+      ]
+    },
+    {
+      label: 'Thursday', short: 'THU',
+      tag: 'UPPER BODY B', focus: 'Pull — Back · Rear Delts · Biceps',
+      goal: 'Hypertrophy + Strength', run: 'Easy Run',
+      blocks: [
+        { name: 'Warm-Up', dur: '10 min', type: 'warmup', exercises: [
+          { name: 'Weighted Jump Rope',           sets: '5',  reps: '1 min on / 15 sec off', notes: 'Weighted handles — loosen shoulders post-run' },
+          { name: 'Band Pull-Aparts',             sets: '3',  reps: '20',                    notes: 'Rear delt and external rotator activation' },
+          { name: 'Scapular Pull-Ups',            sets: '2',  reps: '10',                    notes: 'Depress scaps before pulling' },
+        ]},
+        { name: 'Strength A — Horizontal Pull', dur: '16 min', type: 'main', exercises: [
+          { name: 'Barbell Pendlay Row',          sets: '5',  reps: '4–5',                   notes: 'Dead-stop from floor, explosive concentric' },
+          { name: 'DB Chest-Supported Row',       sets: '4',  reps: '8',                     notes: 'Elbows flared, upper back focus' },
+        ]},
+        { name: 'Strength B — Vertical Pull', dur: '13 min', type: 'main', exercises: [
+          { name: 'Weighted Pull-Ups (Vest)',     sets: '5',  reps: '4–5',                   notes: 'Overhand wide grip — lat dominant' },
+          { name: 'Weighted Chin-Ups (Vest)',     sets: '4',  reps: '5–6',                   notes: 'Supinated grip — bicep bias' },
+        ]},
+        { name: 'Rear Delt & Upper Back', dur: '10 min', type: 'main', exercises: [
+          { name: 'DB Bent-Over Reverse Fly',     sets: '4',  reps: '15',                    notes: 'Slight bend, no swinging' },
+          { name: 'DB Single-Arm Row',            sets: '3',  reps: '10/side',               notes: 'Heavy, elbow to hip, full retraction' },
+          { name: 'KB Upright Row',               sets: '3',  reps: '12',                    notes: 'Elbows lead, wrist stays below elbow' },
+        ]},
+        { name: 'Core Finisher', dur: '11 min', type: 'core', exercises: [
+          { name: 'Weighted V-Up (DB)',            sets: '4',  reps: '12',                    notes: 'Light DB — full extension on the way down' },
+          { name: 'Suitcase Carry (DB)',           sets: '3',  reps: '30m/side',              notes: 'Anti-lateral-flexion, tall spine' },
+          { name: 'Plank to Push-Up',             sets: '3',  reps: '10',                    notes: 'Controlled — no hip rotation' },
+        ]},
+      ]
+    },
+    {
+      label: 'Friday', short: 'FRI',
+      tag: 'LOWER BODY B', focus: 'Posterior Chain — Hamstrings · Glutes · Hips',
+      goal: 'Strength + Structural Balance', run: 'Long Run',
+      blocks: [
+        { name: 'Warm-Up', dur: '10 min', type: 'warmup', exercises: [
+          { name: 'Weighted Jump Rope',      sets: '5',  reps: '1 min on / 15 sec off', notes: 'Flush legs before lifting post long run' },
+          { name: 'KB Romanian Deadlift',    sets: '3',  reps: '10',                    notes: 'Slow — feel hamstring load' },
+          { name: 'Glute Bridge Hold',       sets: '2',  reps: '30 sec',                notes: 'Activate glutes pre-lift' },
+        ]},
+        { name: 'Strength A — Hip Hinge', dur: '18 min', type: 'main', exercises: [
+          { name: 'Barbell Romanian Deadlift',sets: '5', reps: '4–5',                   notes: 'Heavy — 80%+ 1RM, hamstring stretch at bottom' },
+          { name: 'Barbell Hip Thrust',      sets: '5',  reps: '6',                     notes: 'Pause 2 sec at top, heavy loading' },
+        ]},
+        { name: 'Posterior Unilateral', dur: '13 min', type: 'main', exercises: [
+          { name: 'Single-Leg RDL (DB)',     sets: '4',  reps: '8/side',                notes: 'Balance + hamstring — controlled tempo' },
+          { name: 'KB Sumo Deadlift',        sets: '4',  reps: '8',                     notes: 'Wide stance, hip-dominant, heavy KB' },
+        ]},
+        { name: 'Glute Isolation', dur: '8 min', type: 'main', exercises: [
+          { name: 'DB Curtsy Lunge',         sets: '3',  reps: '10/side',               notes: 'Glute med and posterior chain' },
+          { name: 'Nordic Hamstring Curl',   sets: '4',  reps: '5',                     notes: 'Eccentric focus — control the descent' },
+        ]},
+        { name: 'Core Finisher', dur: '11 min', type: 'core', exercises: [
+          { name: 'KB Windmill',             sets: '3',  reps: '8/side',                notes: 'Shoulder stability + oblique — move slow' },
+          { name: 'Weighted Reverse Crunch', sets: '4',  reps: '15',                    notes: 'Lower abs — tilt pelvis at top' },
+          { name: 'Suitcase Deadlift (DB)',  sets: '3',  reps: '10/side',               notes: 'Anti-lateral-flexion and oblique integration' },
+        ]},
+      ]
+    },
+    {
+      label: 'Saturday', short: 'SAT',
+      tag: 'FULL BODY B', focus: 'Metabolic Conditioning — Circuits · Volume · Endurance',
+      goal: 'Work Capacity', run: null,
+      blocks: [
+        { name: 'Warm-Up', dur: '10 min', type: 'warmup', exercises: [
+          { name: 'Weighted Jump Rope',            sets: '5',  reps: '1 min on / 15 sec off', notes: 'Condition shoulders and wrists, elevate HR' },
+          { name: "World's Greatest Stretch",      sets: '2',  reps: '5/side',                notes: 'Full body mobility prime' },
+        ]},
+        { name: 'Barbell Complex', dur: '18 min', type: 'main', exercises: [
+          { name: '6-Movement Barbell Complex',    sets: '5',  reps: '6 each',               notes: 'Deadlift → Hang Clean → Front Squat → Press → Back Squat → Good Morning. No rest between moves, 2 min between sets.' },
+        ]},
+        { name: 'KB & DB Circuit', dur: '13 min', type: 'main', exercises: [
+          { name: 'KB Snatch',                     sets: '4',  reps: '8/side',                notes: 'Explosive — full lockout overhead' },
+          { name: 'DB Thrusters',                  sets: '4',  reps: '10',                    notes: 'Fluid squat-to-press, no pause' },
+          { name: 'Weighted Vest Burpee',          sets: '4',  reps: '8',                     notes: 'Full extension at top' },
+        ]},
+        { name: 'Loaded Carries', dur: '9 min', type: 'main', exercises: [
+          { name: 'Overhead KB Carry (1 arm)',     sets: '4',  reps: '30m/side',              notes: 'Full lockout, no lateral lean' },
+          { name: 'Weighted Vest Bear Crawl',      sets: '3',  reps: '20m',                   notes: 'Hips low, controlled pace' },
+        ]},
+        { name: 'Core Finisher', dur: '10 min', type: 'core', exercises: [
+          { name: 'AMRAP: Pull-Ups / Push-Ups / KB Swings', sets: '10 min', reps: '5 / 10 / 15', notes: 'Weighted vest on pull-ups + push-ups. Log your rounds.' },
+          { name: 'Toes-to-Bar',                   sets: '3',  reps: '10',                    notes: 'Strict — no kipping, control on descent' },
+          { name: 'Weighted Plank (Vest)',         sets: '3',  reps: '45 sec',                notes: 'Burnout — hold tension, breathe controlled' },
+        ]},
+      ]
+    },
+    {
+      label: 'Sunday', short: 'SUN',
+      tag: 'REST', focus: 'Full Rest & Recovery',
+      goal: 'Recovery', run: null,
+      rest: true,
+      blocks: []
+    },
+  ];
+
+  // ── Card Rendering ────────────────────────────────────────────
+  function dotClass(type) {
+    if (type === 'warmup') return 'block-pill-dot dot-warmup';
+    if (type === 'core')   return 'block-pill-dot dot-core';
+    return 'block-pill-dot dot-main';
+  }
+
+  function renderCards() {
+    const grid = document.getElementById('dayGrid');
+    grid.innerHTML = PLAN.map((d, i) => {
+      if (d.rest) {
+        return `
+          <div class="day-card rest-card">
+            <div class="day-card-header">
+              <div>
+                <div class="day-card-day">${d.short}</div>
+                <div class="day-card-date-sub">${d.label}</div>
+              </div>
+              <span class="day-card-tag rest">${d.tag}</span>
+            </div>
+            <div class="day-card-body">
+              <div class="day-card-focus">${d.focus}</div>
+              <div class="day-card-goal" style="color:var(--text3)">No training — sleep, eat, recover.</div>
+            </div>
+          </div>
+        `;
+      }
+
+      const blockPills = d.blocks.map(b => `
+        <div class="block-pill">
+          <div class="${dotClass(b.type)}"></div>
+          <span class="block-pill-name">${b.name}</span>
+          <span class="block-pill-dur">${b.dur}</span>
+        </div>
+      `).join('');
+
+      return `
+        <div class="day-card" role="button" tabindex="0"
+          onclick="openModal(${i})"
+          onkeydown="if(event.key==='Enter'||event.key===' ')openModal(${i})">
+          <div class="day-card-header">
+            <div>
+              <div class="day-card-day">${d.short}</div>
+              <div class="day-card-date-sub">${d.label}</div>
+            </div>
+            <span class="day-card-tag">${d.tag}</span>
+          </div>
+          <div class="day-card-body">
+            ${d.run ? `<div class="day-card-run">🏃 ${d.run}</div>` : ''}
+            <div class="day-card-focus">${d.focus}</div>
+            <div class="day-card-goal">Goal: ${d.goal} · 60 min</div>
+            <div class="day-card-blocks">${blockPills}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // ── Modal ─────────────────────────────────────────────────────
+  function openModal(idx) {
+    const d = PLAN[idx];
+    if (d.rest) return;
+
+    // badges
+    document.getElementById('modalBadges').innerHTML = `
+      <span class="day-card-tag">${d.tag}</span>
+      ${d.run ? `<span class="day-card-run" style="border-radius:100px;">🏃 ${d.run}</span>` : ''}
+      <span style="font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;color:var(--text3);">⚡ ${d.goal}</span>
+    `;
+    document.getElementById('modalTitle').textContent = `${d.label} — ${d.focus}`;
+
+    // blocks
+    document.getElementById('modalBody').innerHTML = d.blocks.map((b, bi) => `
+      <details class="modal-block" ${bi === 0 ? 'open' : ''}>
+        <summary>
+          <div class="modal-block-name">
+            <div class="${dotClass(b.type)}" style="width:8px;height:8px;border-radius:50%;flex-shrink:0;"></div>
+            ${b.name}
+            <span class="modal-block-dur">~${b.dur}</span>
+          </div>
+          <span class="modal-chev">▾</span>
+        </summary>
+        <div class="ex-table">
+          <div class="ex-head">
+            <span>Exercise</span><span>Sets</span><span>Reps / Duration</span><span>Coaching Notes</span>
+          </div>
+          ${b.exercises.map(e => `
+            <div class="ex-row">
+              <div class="ex-name">${e.name}</div>
+              <div class="${b.type === 'core' ? 'ex-sets ex-sets-core' : 'ex-sets'}">${e.sets}</div>
+              <div class="ex-reps">${e.reps}</div>
+              <div class="ex-notes">${e.notes}</div>
+            </div>
+          `).join('')}
+        </div>
+      </details>
+    `).join('');
+
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  document.getElementById('modalOverlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Init
+  renderCards();
+  </script>
+</body>
+</html>
