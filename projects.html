@@ -763,6 +763,239 @@ img { max-width: 100%; display: block; }
   .ex-reps { display: none; }
 }
 
+/* ── Project Page Extras ── */
+
+/* Year section header */
+.year-section { margin-bottom: 2.5rem; }
+
+.year-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  user-select: none;
+  padding: .5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.year-header:hover .year-label { color: var(--teal); }
+
+.year-label {
+  font-family: var(--syne);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: var(--text);
+  transition: color .15s;
+  flex: 1;
+}
+.year-count {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .1em;
+  color: var(--text3);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: .15rem .6rem;
+}
+.year-toggle {
+  font-size: .8rem;
+  color: var(--text3);
+  transition: transform .25s, color .15s;
+  width: 20px;
+  text-align: center;
+}
+.year-section.collapsed .year-toggle { transform: rotate(-90deg); }
+.year-section.collapsed .year-grid { display: none; }
+
+/* Year filter bar */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.8rem;
+}
+.filter-bar-label {
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-right: .3rem;
+}
+.year-filter-btn {
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .08em;
+  padding: .3rem .8rem;
+  border-radius: 100px;
+  border: 1px solid var(--border2);
+  background: var(--surface2);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all .15s;
+}
+.year-filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+.year-filter-btn.active { background: var(--teal); color: #0b0c10; border-color: var(--teal); font-weight: 600; }
+.year-filter-btn.all { border-style: dashed; }
+
+/* Pinned section */
+.pinned-label {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .14em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.pinned-label::before {
+  content: '📌';
+  font-size: .75rem;
+}
+
+/* Project card title row */
+.project-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: .6rem;
+  margin-bottom: .2rem;
+}
+.project-title-row h3 {
+  font-family: var(--syne);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+  flex: 1;
+}
+.pub-star {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: .05rem;
+}
+
+/* Conference tag (red family, top of card) */
+.conf-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: .1em;
+  padding: .18rem .6rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.conf-tag.published {
+  background: rgba(220, 70, 70, .13);
+  color: #e8736b;
+  border: 1px solid rgba(220, 70, 70, .25);
+}
+.conf-tag.review {
+  background: rgba(200, 140, 50, .12);
+  color: #d4956a;
+  border: 1px solid rgba(200, 140, 50, .22);
+}
+.conf-tag.presented {
+  background: rgba(130, 80, 220, .13);
+  color: #a07ee8;
+  border: 1px solid rgba(130, 80, 220, .22);
+}
+
+/* Year badge on card */
+.card-year-badge {
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: .1em;
+  color: var(--text3);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: .1rem .45rem;
+  margin-bottom: .6rem;
+  display: inline-block;
+}
+
+/* Card top meta row */
+.card-top-meta {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  flex-wrap: wrap;
+  margin-bottom: .5rem;
+}
+
+/* Search box */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  padding: .55rem 1rem;
+  margin-bottom: 1rem;
+  transition: border-color .15s;
+  flex: 1;
+  max-width: 320px;
+}
+.search-box:focus-within { border-color: var(--teal); }
+.search-box input {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: var(--inter);
+  font-size: .85rem;
+  color: var(--text);
+  width: 100%;
+}
+.search-box input::placeholder { color: var(--text3); }
+.search-icon { color: var(--text3); font-size: .85rem; flex-shrink: 0; }
+
+.filter-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+/* Collapse all button */
+.collapse-all-btn {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .08em;
+  padding: .3rem .8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text3);
+  cursor: pointer;
+  transition: all .15s;
+  margin-left: auto;
+}
+.collapse-all-btn:hover { border-color: var(--border2); color: var(--text2); }
+
+/* No results */
+.no-results {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: .8rem;
+  letter-spacing: .06em;
+  display: none;
+}
+.no-results.visible { display: block; }
+
   </style>
 </head>
 
@@ -788,69 +1021,329 @@ img { max-width: 100%; display: block; }
         <div class="section-head">
           <p class="section-kicker">Work</p>
           <h2>Projects</h2>
-          <p>All projects, organized as a browsable grid.</p>
+          <p>Research and engineering across Quality-Diversity, bioinformatics, and interactive systems. ⭐ = led to publication &nbsp;|&nbsp; 📄 = published &nbsp;|&nbsp; 🎤 = presented</p>
         </div>
 
-        <div id="projectsGrid" class="grid three"></div>
-
-        <div class="projects-controls">
-          <button id="loadMoreBtn" class="btn primary" type="button">Load more</button>
-          <button id="showLessBtn" class="btn" type="button">Show less</button>
+        <!-- Pinned -->
+        <div id="pinnedSection">
+          <div class="pinned-label">Pinned</div>
+          <div class="grid three" id="pinnedGrid"></div>
         </div>
 
-        <footer class="footer">
-          <p>© <span id="year"></span> Alejandro Medina.</p>
-        </footer>
+        <hr style="border:none;border-top:1px solid var(--border);margin:2.5rem 0;" />
+
+        <!-- Filter row -->
+        <div class="filter-row">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="Search projects..." autocomplete="off" />
+          </div>
+          <div class="filter-bar" id="filterBar">
+            <span class="filter-bar-label">Year</span>
+          </div>
+          <button class="collapse-all-btn" id="collapseAllBtn">Collapse all ▾</button>
+        </div>
+
+        <!-- Year sections (injected by JS) -->
+        <div id="yearSections"></div>
+        <div class="no-results" id="noResults">No projects match your search.</div>
 
       </div>
     </section>
   </main>
 
   <script>
-    const PROJECTS = [
-      { title: 'MAS-QD', subtitle: 'Multi-Archive Scheduling for Robust Illumination', desc: 'A scheduler coordinating multiple archives and emitters to improve illumination robustness across complementary descriptor views.', tags: ['QD', 'Scheduling', 'Multi-View'] },
-      { title: 'QD Motif Discovery', subtitle: 'Illuminating DNA motif hypothesis spaces', desc: 'Framing DNA motif discovery as a quality-diversity problem to recover multiple high-quality motif hypotheses, compared against standard tools under matched criteria.', tags: ['Bioinformatics', 'MAP-Elites', 'Interpretation'], links: [{ label: 'Paper →', href: 'https://arxiv.org/abs/2601.17808' }] },
-      { title: 'Illuminating Recommendation Spaces', subtitle: 'QD perspective on recommender trade-offs', desc: 'Using illumination algorithms to map diverse, high-performing recommendation policies and characterize accuracy–diversity–fairness trade-offs.', tags: ['Recsys', 'QD', 'Trade-offs'] },
-      { title: 'Human-in-the-Loop Archive Exploration', subtitle: 'Interactive querying for scientific interpretation', desc: 'UI and interaction primitives for exploring QD archives (slicing, annotation, comparisons) to support scientific and design interpretation.', tags: ['HCI', 'Visualization', 'QD'] },
-      { title: 'Alcohol Consumption Phenotyping', subtitle: 'Predictive modeling of behavioral trajectories', desc: 'ML analysis of alcohol-intake trajectory classifications in nonhuman primates, evaluating stability and predictive validity across modeling approaches.', tags: ['ML', 'Time Series', 'Bio'] },
-      { title: 'Minecraft Flying Machines', subtitle: "Quality-Diversity for creative AI — GECCO '23", desc: 'MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors. Published at GECCO \'23.', tags: ['GECCO', 'QD', 'Creative AI'], links: [{ label: 'Paper →', href: 'https://dl.acm.org/doi/10.1145/3583131.3590352' }] },
-      { title: 'Dial-a-Ride Problem', subtitle: 'Evaluating an earliest deadline first algorithm', desc: 'Algorithmic benchmark and comparison between various existing scheduling algorithms and an earliest deadline first approach (EDF).', tags: ['Algorithms', 'Benchmark'], links: [{ label: 'Code →', href: 'https://github.com/alejmedinajr/ImplementingEDF' }] },
-      { title: 'US Doodle Polls', subtitle: 'Cooperative polls study on priority in scheduling', desc: 'Python analysis on trends in sincerity in a human study across the US when considering self, team, or job.', tags: ['Analysis', 'Doodle Polls'], links: [{ label: 'Paper →', href: 'https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4' }] },
-    ];
+  // ── LEGEND ───────────────────────────────────────────────────
+  // publication: { venue, type: 'published'|'review'|'presented', emoji: 📄|⏳|🎤 }
+  // pinned: true → appears in pinned section AND year section
+  // star: true → gets ⭐ next to title
 
-    const PAGE_SIZE = 9;
-    let visibleCount = PAGE_SIZE;
-    const grid = document.getElementById('projectsGrid');
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    const showLessBtn = document.getElementById('showLessBtn');
+  const PROJECTS = [
+    // ── 2026 ──
+    {
+      year: 2026,
+      title: "QD Motif Discovery",
+      subtitle: "MAP-Elites for DNA motif hypothesis spaces",
+      desc: "Framing DNA motif discovery as a quality-diversity problem to recover multiple high-quality motif hypotheses. Compared against standard motif discovery tools under matched criteria.",
+      tags: ["Bioinformatics", "MAP-Elites", "Genomics"],
+      pinned: true,
+      star: true,
+      publication: { venue: "GECCO '26", type: "review", emoji: "⏳" },
+      links: [{ label: "Preprint →", href: "https://arxiv.org/abs/2601.17808" }]
+    },
+    {
+      year: 2026,
+      title: "Evolutionary Computation for Scientific Discovery",
+      subtitle: "Position paper on EC as exploratory science",
+      desc: "A position paper arguing for evolutionary computation as a first-class tool for exploratory biological discovery, beyond optimization.",
+      tags: ["Evolutionary Computation", "Biology", "Theory"],
+      star: true,
+      publication: { venue: "CEC '26", type: "review", emoji: "⏳" },
+      links: []
+    },
+    {
+      year: 2026,
+      title: "MAS-QD",
+      subtitle: "Multi-Archive Scheduling for Robust Illumination",
+      desc: "A scheduler coordinating multiple QD archives and emitters to improve illumination robustness across complementary descriptor views.",
+      tags: ["QD", "Scheduling", "Multi-View"],
+      links: []
+    },
+    {
+      year: 2026,
+      title: "Illuminating Recommendation Spaces",
+      subtitle: "QD perspective on recommender trade-offs",
+      desc: "Using illumination algorithms to map diverse, high-performing recommendation policies — characterizing accuracy–diversity–fairness trade-offs across the archive.",
+      tags: ["Recsys", "QD", "Trade-offs"],
+      links: []
+    },
+    {
+      year: 2026,
+      title: "QD Archives as Design Databases",
+      subtitle: "Human-queryable archives for design exploration",
+      desc: "Treating quality-diversity archives as structured design databases that humans can query, annotate, and navigate for creative and scientific exploration.",
+      tags: ["HCI", "QD", "Design"],
+      links: []
+    },
+    {
+      year: 2026,
+      title: "Human-in-the-Loop Adaptive QD",
+      subtitle: "Interactive querying and archive exploration",
+      desc: "UI and interaction primitives for exploring QD archives — slicing, annotation, comparisons — to support scientific and design interpretation.",
+      tags: ["HCI", "Visualization", "QD"],
+      links: []
+    },
+    {
+      year: 2026,
+      title: "Alcohol Consumption & Clustering",
+      subtitle: "Unsupervised phenotyping of drinking behavior",
+      desc: "Clustering approaches to identify latent phenotypes in alcohol consumption data across nonhuman primate cohorts.",
+      tags: ["ML", "Clustering", "Bioinformatics"],
+      links: []
+    },
+    {
+      year: 2026,
+      title: "Evolutionary Computation & Graph Pruning",
+      subtitle: "EC-driven sparse graph optimization",
+      desc: "Applying evolutionary search to structured graph pruning tasks, exploring how QD and EC approaches compare to gradient-based pruning methods.",
+      tags: ["Evolutionary Computation", "Graphs", "Optimization"],
+      links: []
+    },
+    // ── 2025 ──
+    {
+      year: 2025,
+      title: "Alcohol Consumption Phenotyping (MATRR)",
+      subtitle: "Predictive modeling of behavioral trajectories",
+      desc: "ML analysis of alcohol-intake trajectory classifications in nonhuman primates, evaluating stability and predictive validity across modeling approaches.",
+      tags: ["ML", "Time Series", "Bioinformatics"],
+      star: true,
+      publication: { venue: "AI for Bio & Med Symposium '25", type: "presented", emoji: "🎤" },
+      links: []
+    },
+    {
+      year: 2025,
+      title: "Strategic Diversity in Settlers of Catan",
+      subtitle: "QD for multi-strategy board game AI",
+      desc: "Using quality-diversity search to discover a diverse archive of distinct high-performing strategies in Settlers of Catan.",
+      tags: ["QD", "Game AI", "Strategy"],
+      links: []
+    },
+    {
+      year: 2025,
+      title: "Robust Strategy Optimization with PSO",
+      subtitle: "Particle Swarm Optimization for adversarial robustness",
+      desc: "Applying PSO to discover strategies robust to opponent variation, combining swarm intelligence with quality-diversity objectives.",
+      tags: ["PSO", "Optimization", "Robustness"],
+      links: []
+    },
+    // ── 2024 ──
+    {
+      year: 2024,
+      title: "SNITCH",
+      subtitle: "Southwestern's Newest Innovation to Cultivate Honor",
+      desc: "An anonymous, AI-assisted honor code reporting system designed to increase reporting rates while protecting student psychological safety.",
+      tags: ["HCI", "Systems", "Ethics"],
+      pinned: true,
+      star: true,
+      publication: { venue: "CCSC South Central '24", type: "presented", emoji: "🎤" },
+      links: []
+    },
+    // ── 2023 ──
+    {
+      year: 2023,
+      title: "Minecraft Flying Machines",
+      subtitle: "Quality-Diversity for creative AI — GECCO '23",
+      desc: "MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors.",
+      tags: ["QD", "Creative AI", "Neuroevolution"],
+      pinned: true,
+      star: true,
+      publication: { venue: "GECCO '23", type: "published", emoji: "📄" },
+      links: [{ label: "Paper →", href: "https://dl.acm.org/doi/10.1145/3583131.3590352" }]
+    },
+    {
+      year: 2023,
+      title: "Interactive Evolution of Shapes in Minecraft",
+      subtitle: "Human-in-the-loop creative evolution",
+      desc: "Interactive evolutionary approach allowing users to guide the evolution of novel voxel shapes in Minecraft using aesthetic preference.",
+      tags: ["Interactive Evolution", "Creative AI", "HCI"],
+      star: true,
+      publication: { venue: "CCSC South Central '23", type: "presented", emoji: "🎤" },
+      links: []
+    },
+    {
+      year: 2023,
+      title: "Dial-a-Ride Problem",
+      subtitle: "Evaluating an earliest deadline first algorithm",
+      desc: "Algorithmic benchmark and comparison between various existing scheduling algorithms and an earliest deadline first approach (EDF).",
+      tags: ["Algorithms", "Scheduling", "Benchmark"],
+      star: true,
+      publication: { venue: "Tapia '23", type: "presented", emoji: "🎤" },
+      links: [{ label: "Code →", href: "https://github.com/alejmedinajr/ImplementingEDF" }]
+    },
+    // ── 2022 ──
+    {
+      year: 2022,
+      title: "US Doodle Polls",
+      subtitle: "Cooperative polls & sincerity in scheduling",
+      desc: "Analysis of trends in sincerity across a human study of US respondents when prioritizing self, team, or job in cooperative scheduling polls.",
+      tags: ["Analysis", "HCI", "Voting Theory"],
+      pinned: false,
+      star: true,
+      publication: { venue: "CDVE '22", type: "published", emoji: "📄" },
+      links: [{ label: "Paper →", href: "https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4" }]
+    },
+  ];
 
-    function cardHTML(p) {
-      const tags  = (p.tags  || []).map(t => `<span class="tag">${t}</span>`).join('');
-      const links = (p.links || []).map(l => `<a class="link" href="${l.href}" target="_blank" rel="noreferrer">${l.label}</a>`).join('');
-      return `
-        <article class="card project">
-          <div class="project-top">
-            <h3>${p.title}</h3>
-            ${p.subtitle ? `<p class="muted">${p.subtitle}</p>` : ''}
+  // ── Helpers ──────────────────────────────────────────────────
+  function confTagHTML(pub) {
+    if (!pub) return '';
+    return `<span class="conf-tag ${pub.type}">${pub.emoji} ${pub.venue}</span>`;
+  }
+
+  function cardHTML(p, showYearBadge = false) {
+    const tags  = (p.tags  || []).map(t => `<span class="tag">${t}</span>`).join('');
+    const links = (p.links || []).map(l => `<a class="link" href="${l.href}" target="_blank" rel="noreferrer">${l.label}</a>`).join('');
+    const yearBadge = showYearBadge ? `<span class="card-year-badge">${p.year}</span>` : '';
+    const confTag = confTagHTML(p.publication);
+
+    return `
+      <article class="card project" data-year="${p.year}" data-title="${p.title.toLowerCase()}" data-tags="${(p.tags||[]).join(' ').toLowerCase()}">
+        <div>
+          ${yearBadge}
+          <div class="card-top-meta">
+            ${confTag}
           </div>
-          <p>${p.desc || ''}</p>
-          <div class="meta">${tags}</div>
-          <div class="actions">${links}</div>
-        </article>
+          <div class="project-title-row">
+            <h3>${p.title}</h3>
+            ${p.star ? '<span class="pub-star" title="Led to publication or presentation">⭐</span>' : ''}
+          </div>
+          ${p.subtitle ? `<p class="muted" style="font-size:.8rem;margin-bottom:.4rem;">${p.subtitle}</p>` : ''}
+        </div>
+        <p>${p.desc || ''}</p>
+        <div class="meta">${tags}</div>
+        ${links ? `<div class="actions">${links}</div>` : ''}
+      </article>
+    `;
+  }
+
+  // ── Pinned Section ───────────────────────────────────────────
+  function renderPinned() {
+    const pinned = PROJECTS.filter(p => p.pinned);
+    document.getElementById('pinnedGrid').innerHTML = pinned.map(p => cardHTML(p, true)).join('');
+  }
+
+  // ── Year Sections ─────────────────────────────────────────────
+  let allCollapsed = false;
+
+  function getYears() {
+    return [...new Set(PROJECTS.map(p => p.year))].sort((a, b) => b - a);
+  }
+
+  function renderYearFilters(years) {
+    const bar = document.getElementById('filterBar');
+    const allBtn = `<button class="year-filter-btn all active" data-year="all" onclick="filterYear('all',this)">All</button>`;
+    const yearBtns = years.map(y =>
+      `<button class="year-filter-btn" data-year="${y}" onclick="filterYear(${y},this)">${y}</button>`
+    ).join('');
+    bar.innerHTML = `<span class="filter-bar-label">Year</span>${allBtn}${yearBtns}`;
+  }
+
+  function renderYearSections(filterYear = 'all', searchQuery = '') {
+    const years = getYears();
+    const container = document.getElementById('yearSections');
+    const query = searchQuery.toLowerCase().trim();
+
+    let totalVisible = 0;
+
+    container.innerHTML = years.map(year => {
+      if (filterYear !== 'all' && filterYear !== year) return '';
+
+      const projects = PROJECTS.filter(p => {
+        if (p.year !== year) return false;
+        if (!query) return true;
+        return (
+          p.title.toLowerCase().includes(query) ||
+          (p.subtitle || '').toLowerCase().includes(query) ||
+          (p.tags || []).join(' ').toLowerCase().includes(query) ||
+          (p.publication?.venue || '').toLowerCase().includes(query)
+        );
+      });
+
+      if (!projects.length) return '';
+      totalVisible += projects.length;
+
+      const sectionId = `year-${year}`;
+      const cards = projects.map(p => cardHTML(p)).join('');
+
+      return `
+        <div class="year-section" id="${sectionId}">
+          <div class="year-header" onclick="toggleYear('${sectionId}')">
+            <span class="year-label">${year}</span>
+            <span class="year-count">${projects.length} project${projects.length !== 1 ? 's' : ''}</span>
+            <span class="year-toggle">▾</span>
+          </div>
+          <div class="year-grid grid three">${cards}</div>
+        </div>
       `;
-    }
+    }).join('');
 
-    function render() {
-      grid.innerHTML = PROJECTS.slice(0, visibleCount).map(cardHTML).join('');
-      loadMoreBtn.style.display = visibleCount < PROJECTS.length ? 'inline-flex' : 'none';
-      showLessBtn.style.display = visibleCount > PAGE_SIZE      ? 'inline-flex' : 'none';
-    }
+    const noResults = document.getElementById('noResults');
+    noResults.classList.toggle('visible', totalVisible === 0);
+  }
 
-    loadMoreBtn.addEventListener('click', () => { visibleCount = Math.min(visibleCount + PAGE_SIZE, PROJECTS.length); render(); });
-    showLessBtn.addEventListener('click', () => { visibleCount = PAGE_SIZE; render(); grid.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+  // ── Interactions ─────────────────────────────────────────────
+  let activeYear = 'all';
+  let searchQuery = '';
 
-    document.getElementById('year').textContent = new Date().getFullYear();
-    render();
+  function filterYear(year, btn) {
+    activeYear = year;
+    document.querySelectorAll('.year-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderYearSections(activeYear, searchQuery);
+  }
+
+  function toggleYear(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) section.classList.toggle('collapsed');
+  }
+
+  document.getElementById('collapseAllBtn').addEventListener('click', function() {
+    allCollapsed = !allCollapsed;
+    document.querySelectorAll('.year-section').forEach(s => {
+      s.classList.toggle('collapsed', allCollapsed);
+    });
+    this.textContent = allCollapsed ? 'Expand all ▸' : 'Collapse all ▾';
+  });
+
+  document.getElementById('searchInput').addEventListener('input', function() {
+    searchQuery = this.value;
+    renderYearSections(activeYear, searchQuery);
+  });
+
+  // ── Init ─────────────────────────────────────────────────────
+  renderPinned();
+  renderYearFilters(getYears());
+  renderYearSections();
   </script>
 </body>
 </html>
