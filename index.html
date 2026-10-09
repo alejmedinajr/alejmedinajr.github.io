@@ -43,26 +43,6 @@
       </div>
     </section>
 
-    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-bottom:2px solid var(--color-divider)">
-      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
-        <div style="padding:28px 24px 24px 0;display:flex;flex-direction:column;gap:6px">
-          <div style="font-family:var(--font-heading);font-weight:800;font-size:56px;letter-spacing:-.03em;line-height:1">{{ s.n }}</div>
-          <div style="font-size:14px;line-height:1.4">{{ s.l }}</div>
-        </div>
-      </sc-for>
-      <div style="padding:28px 0 20px 24px;border-left:2px solid var(--color-divider);display:flex;flex-direction:column;gap:10px;min-width:190px">
-        <div style="display:flex;align-items:end;gap:10px;height:60px">
-          <sc-for list="{{ bars }}" as="b" hint-placeholder-count="3">
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;gap:4px;height:100%">
-              <span style="font-size:12px;font-weight:700">{{ b.n }}</span>
-              <div style="width:100%;background:var(--color-accent);height:{{ b.h }}px"></div>
-            </div>
-          </sc-for>
-        </div>
-        <div style="display:flex;gap:10px"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="3"><span style="flex:1;text-align:center;font-size:12px">{{ b.y }}</span></sc-for></div>
-        <div style="font-size:12px;line-height:1.4">Citations per year. Source: <a href="https://scholar.google.com/citations?user=nSbbG7gAAAAJ" target="_blank" rel="noreferrer" style="font-weight:700;color:var(--color-accent-700)">Google Scholar</a>, updated {{ updated }}</div>
-      </div>
-    </section>
 
     <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));border-bottom:2px solid var(--color-divider)">
       <div style="padding:48px 40px 48px 0;display:flex;flex-direction:column;gap:12px">
@@ -83,6 +63,7 @@
       </div>
       <div style="display:flex;flex-wrap:wrap;border:2px solid var(--color-divider)">
         <div style="flex:1 1 100%;min-width:0;position:relative;background:#201e1d">
+          <div style="position:absolute;top:12px;left:12px;display:flex;gap:18px;padding:8px 14px;background:#201e1d;border:2px solid #f3f2f2;color:#f3f2f2;z-index:2"><sc-for list="{{ stats }}" as="s" hint-placeholder-count="3"><div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:var(--font-heading);font-weight:800;font-size:22px;line-height:1">{{ s.n }}</span><span style="font-size:11px">{{ s.l }}</span></div></sc-for><a href="https://scholar.google.com/citations?user=nSbbG7gAAAAJ" target="_blank" rel="noreferrer" style="align-self:end;font-size:11px;color:oklch(0.86 0.14 200)">Scholar, {{ updated }}</a></div>
           <div ref="{{ graphRef }}" style="width:100%;aspect-ratio:1000/800;min-height:560px;touch-action:none;user-select:none"></div>
           <div style="position:absolute;top:12px;right:12px;display:flex;gap:6px">
             <button onClick="{{ zoomIn }}" style="width:36px;height:36px;background:transparent;color:#f3f2f2;border:2px solid #f3f2f2;font:700 18px var(--font-body);cursor:pointer" aria-label="Zoom in">+</button>
@@ -440,7 +421,6 @@ class Component extends DCLogic {
       updated: sc.updated,
       nav: [{ href: '#projects', label: 'Projects' }, { href: '#publications', label: 'Publications' }, { href: '#cv', label: 'CV' }, { href: '#contact', label: 'Contact' }],
       stats: [{ n: sc.publications, l: 'Publications' }, { n: sc.citations, l: 'Citations' }, { n: sc.h_index, l: 'h-index' }],
-      bars: py.map(y => ({ y, n: sc.per_year[y], h: Math.max(4, Math.round(sc.per_year[y] / mx * 50)) })),
       news: [{ k: 'GECCO', t: 'My companion paper was accepted to GECCO 2026.' }, { k: 'CRA', t: 'My lightning talk was accepted at the 2026 CRA Grad Cohort Workshop.' }, { k: 'Tapia', t: 'I won 3rd place in the ACM Graduate Poster Competition at the 2026 Tapia Conference.' }],
     };
   }
