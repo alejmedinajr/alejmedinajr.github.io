@@ -1,996 +1,450 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Alejandro Medina: PhD student at Baylor University. Quality-Diversity, Evolutionary Computation, ML for scientific discovery." />
-  <title>Alejandro Medina</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-/* ============================================================
-   Alejandro Medina — Personal Site
-   style.css  |  Design: dark navy + teal accent
-   ============================================================ */
-
-
-/* ── Reset ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-
-/* ── Design Tokens ── */
-:root {
-  --bg:          #0b0c10;
-  --bg2:         #0e0f15;
-  --surface:     #13151e;
-  --surface2:    #181a25;
-  --surface3:    #1e2030;
-  --border:      rgba(255,255,255,.06);
-  --border2:     rgba(255,255,255,.10);
-  --teal:        #00c8a0;
-  --teal-dim:    rgba(0,200,160,.12);
-  --teal-glow:   rgba(0,200,160,.18);
-  --text:        #f0f1f5;
-  --text2:       #8a8fa8;
-  --text3:       #555a72;
-  --muted:       #4a4f66;
-
-  --syne:  'Syne', sans-serif;
-  --mono:  'DM Mono', monospace;
-  --inter: 'Inter', sans-serif;
-
-  --r-sm: 12px;
-  --r:    18px;
-  --r-lg: 24px;
-  --max:  1100px;
-  --col:  min(92vw, var(--max));
-  --nav-h: 64px;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--inter);
-  font-size: 15px;
-  line-height: 1.65;
-  -webkit-font-smoothing: antialiased;
-}
-
-a { color: inherit; text-decoration: none; transition: color .15s, opacity .15s; }
-img { max-width: 100%; display: block; }
-
-/* ── Layout ── */
-.container { width: var(--col); margin-inline: auto; }
-
-/* ── Nav ── */
-.site-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 300;
-  height: var(--nav-h);
-  background: rgba(11,12,16,.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--nav-h);
-}
-.brand {
-  font-family: var(--syne);
-  font-size: .92rem;
-  font-weight: 700;
-  letter-spacing: .01em;
-  color: var(--text);
-}
-.brand:hover { color: var(--teal); }
-
-.nav-links { display: flex; gap: 2.2rem; align-items: center; }
-.nav-links a {
-  font-family: var(--inter);
-  font-size: .82rem;
-  font-weight: 400;
-  color: var(--text2);
-  letter-spacing: .02em;
-  transition: color .15s;
-}
-.nav-links a:hover,
-.nav-links a[aria-current="page"] { color: var(--teal); }
-
-/* ── Buttons ── */
-.btn {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .55rem 1.3rem;
-  border-radius: 8px;
-  font-family: var(--inter);
-  font-size: .8rem;
-  font-weight: 500;
-  border: 1px solid var(--border2);
-  background: var(--surface2);
-  color: var(--text2);
-  cursor: pointer;
-  transition: border-color .15s, color .15s, background .15s;
-  white-space: nowrap;
-}
-.btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-dim); }
-.btn.primary {
-  background: var(--teal);
-  color: #0b0c10;
-  border-color: var(--teal);
-  font-weight: 600;
-}
-.btn.primary:hover { background: #00b891; border-color: #00b891; color: #0b0c10; }
-
-/* ── Hero ── */
-.hero {
-  min-height: 100vh;
-  padding-top: var(--nav-h);
-  display: flex;
-  align-items: center;
-}
-.hero-inner {
-  width: var(--col);
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 2rem;
-  align-items: center;
-  padding: 3rem 0 4rem;
-}
-
-/* Avatar / photo badge */
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: .6rem;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 100px;
-  padding: .35rem .9rem .35rem .45rem;
-  margin-bottom: 1.8rem;
-}
-.hero-avatar {
-  width: 28px; height: 28px;
-  border-radius: 50%;
-  background: var(--teal-dim);
-  border: 1px solid var(--teal);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--syne);
-  font-size: .65rem;
-  font-weight: 700;
-  color: var(--teal);
-  flex-shrink: 0;
-}
-.hero-badge-text {
-  font-family: var(--mono);
-  font-size: .7rem;
-  color: var(--text2);
-  letter-spacing: .04em;
-}
-.hero-badge-socials { display: flex; gap: .7rem; margin-left: .4rem; }
-.hero-badge-socials a {
-  font-family: var(--mono);
-  font-size: .68rem;
-  color: var(--text3);
-  transition: color .15s;
-}
-.hero-badge-socials a:hover { color: var(--teal); }
-
-.hero h1 {
-  font-family: var(--syne);
-  font-size: clamp(2.6rem, 5.5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -.02em;
-  color: var(--text);
-  margin-bottom: 1.3rem;
-}
-.hero h1 em {
-  font-style: normal;
-  color: var(--teal);
-}
-
-.hero-sub {
-  font-size: .95rem;
-  color: var(--text2);
-  max-width: 50ch;
-  margin-bottom: 2rem;
-  line-height: 1.75;
-}
-.hero-sub strong { color: var(--text); font-weight: 500; }
-
-.hero-cta { display: flex; gap: .7rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-
-.chips { display: flex; flex-wrap: wrap; gap: .35rem; }
-.chip {
-  font-family: var(--mono);
-  font-size: .65rem;
-  letter-spacing: .05em;
-  padding: .22rem .65rem;
-  border-radius: 100px;
-  background: var(--surface2);
-  color: var(--text3);
-  border: 1px solid var(--border);
-}
-
-/* ── Photo card (right column) ── */
-.photo-card {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  aspect-ratio: 3/4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.photo-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-.photo-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .8rem;
-  color: var(--text3);
-  text-align: center;
-  padding: 2rem;
-}
-.photo-placeholder-icon {
-  width: 64px; height: 64px;
-  border-radius: 50%;
-  background: var(--surface2);
-  border: 2px dashed var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem;
-}
-.photo-placeholder p {
-  font-family: var(--mono);
-  font-size: .7rem;
-  letter-spacing: .06em;
-  color: var(--text3);
-}
-
-/* ── Bottom hero strip ── */
-.hero-strip {
-  padding: 0 0 4rem;
-}
-.hero-strip-inner {
-  width: var(--col);
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.strip-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 1.6rem 1.8rem;
-  transition: border-color .2s, background .2s;
-}
-.strip-card:hover { border-color: var(--border2); background: var(--surface2); }
-.strip-card-label {
-  font-family: var(--mono);
-  font-size: .65rem;
-  letter-spacing: .14em;
-  color: var(--teal);
-  text-transform: uppercase;
-  margin-bottom: .6rem;
-}
-.strip-card h3 {
-  font-family: var(--syne);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: .3rem;
-}
-.strip-card p { font-size: .85rem; color: var(--text2); }
-
-/* ── Sections ── */
-.section {
-  padding: 5rem 0;
-  border-top: 1px solid var(--border);
-}
-.section-head { margin-bottom: 2.8rem; }
-.section-kicker {
-  font-family: var(--mono);
-  font-size: .68rem;
-  letter-spacing: .18em;
-  color: var(--teal);
-  text-transform: uppercase;
-  margin-bottom: .5rem;
-}
-.section-head h2 {
-  font-family: var(--syne);
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -.02em;
-  color: var(--text);
-  margin-bottom: .5rem;
-}
-.section-head p { font-size: .92rem; color: var(--text2); max-width: 58ch; }
-
-.section-head-row {
-  display: flex; justify-content: space-between;
-  align-items: flex-end; flex-wrap: wrap; gap: 1rem;
-}
-.see-more {
-  font-family: var(--mono); font-size: .72rem;
-  letter-spacing: .08em; color: var(--teal);
-  white-space: nowrap;
-}
-.see-more:hover { opacity: .7; }
-
-/* ── Cards ── */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 1.6rem;
-  transition: border-color .2s, background .2s;
-}
-.card:hover { border-color: var(--border2); }
-
-.grid.three {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-/* ── Project cards ── */
-.card.project {
-  display: flex; flex-direction: column; gap: .8rem;
-  background: var(--surface);
-}
-.project-top h3 {
-  font-family: var(--syne);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: .2rem;
-}
-.project-top .muted { font-size: .8rem; color: var(--text2); }
-.card.project p { font-size: .85rem; color: var(--text2); flex: 1; }
-
-.meta { display: flex; flex-wrap: wrap; gap: .3rem; }
-.tag {
-  font-family: var(--mono);
-  font-size: .62rem;
-  letter-spacing: .06em;
-  padding: .15rem .55rem;
-  border-radius: 100px;
-  background: var(--surface2);
-  color: var(--text3);
-  border: 1px solid var(--border);
-}
-.actions { display: flex; gap: .6rem; margin-top: auto; }
-.link {
-  font-family: var(--mono);
-  font-size: .7rem;
-  letter-spacing: .06em;
-  color: var(--teal);
-  transition: opacity .15s;
-}
-.link:hover { opacity: .7; }
-
-/* ── Publications ── */
-.card h3 {
-  font-family: var(--mono);
-  font-size: .68rem;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--text3);
-  margin-bottom: 1rem;
-}
-.pubs {
-  list-style: decimal; padding-left: 1.3rem;
-  display: flex; flex-direction: column; gap: 1rem;
-}
-.pubs li { font-size: .85rem; color: var(--text2); line-height: 1.65; }
-.pub-authors { color: var(--text); }
-.pub-title { color: var(--text); font-style: italic; }
-.pub-title.link-title { color: var(--teal); font-style: italic; }
-.pub-venue { color: var(--text2); }
-
-/* ── CV ── */
-.cv-top { margin-bottom: 1rem; }
-.cv-identity {
-  display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 1rem;
-}
-.cv-name {
-  font-family: var(--syne);
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: .2rem;
-}
-.cv-line { font-size: .85rem; color: var(--text2); }
-.cv-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
-
-.cv-accordion { display: flex; flex-direction: column; gap: .5rem; }
-.cv-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  overflow: hidden;
-  transition: border-color .2s;
-}
-.cv-item[open] { border-color: var(--border2); }
-.cv-item summary {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 1rem 1.4rem;
-  cursor: pointer; list-style: none; user-select: none;
-  transition: background .15s;
-}
-.cv-item summary:hover { background: var(--surface2); }
-.cv-item summary::-webkit-details-marker { display: none; }
-.cv-title {
-  font-family: var(--syne);
-  font-size: .82rem;
-  font-weight: 600;
-  letter-spacing: .04em;
-  color: var(--text);
-}
-.cv-chev { color: var(--text3); font-size: .9rem; transition: transform .2s; }
-.cv-item[open] .cv-chev { transform: rotate(180deg); }
-.cv-content {
-  padding: 1.2rem 1.4rem 1.4rem;
-  border-top: 1px solid var(--border);
-  display: flex; flex-direction: column; gap: 1.2rem;
-}
-.cv-entry { display: flex; flex-direction: column; gap: .4rem; }
-.cv-entry-head {
-  display: flex; justify-content: space-between;
-  align-items: baseline; flex-wrap: wrap; gap: .4rem;
-  font-size: .88rem;
-}
-.cv-entry-head strong { color: var(--text); font-weight: 500; }
-.cv-entry-head .muted {
-  font-family: var(--mono); font-size: .7rem;
-  letter-spacing: .06em; color: var(--text2);
-}
-.cv-sub { font-size: .82rem; color: var(--text2); }
-.cv-subhead {
-  font-family: var(--mono); font-size: .65rem;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--teal); margin-bottom: .4rem;
-}
-.cv-split { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-.bullets {
-  list-style: disc; padding-left: 1.2rem;
-  display: flex; flex-direction: column; gap: .25rem;
-}
-.bullets li { font-size: .84rem; color: var(--text2); }
-
-/* ── Contact ── */
-.contact-card { display: flex; flex-direction: column; gap: 1.4rem; }
-.contact-email { font-family: var(--syne); font-size: 1.5rem; font-weight: 700; }
-.contact-email a { color: var(--text); transition: color .15s; }
-.contact-email a:hover { color: var(--teal); }
-.contact-buttons { display: flex; flex-wrap: wrap; gap: .5rem; }
-.social-btn {
-  display: inline-flex; align-items: center;
-  padding: .4rem .9rem;
-  border-radius: 8px;
-  border: 1px solid var(--border2);
-  background: var(--surface2);
-  font-family: var(--mono);
-  font-size: .7rem;
-  letter-spacing: .06em;
-  color: var(--text2);
-  transition: border-color .15s, color .15s, background .15s;
-}
-.social-btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-dim); }
-
-/* ── Projects page controls ── */
-.projects-controls {
-  display: flex; gap: .6rem; margin-top: 2rem; justify-content: center;
-}
-
-/* ── Footer ── */
-.footer {
-  margin-top: 3rem; padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  font-family: var(--mono);
-  font-size: .7rem; letter-spacing: .06em;
-  color: var(--text3);
-}
-
-/* ══════════════════════════════════════════════
-   PERSONAL PAGE  (personal.html)
-   ══════════════════════════════════════════════ */
-
-.personal-hero {
-  padding-top: calc(var(--nav-h) + 3rem);
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border);
-}
-.personal-hero h1 {
-  font-family: var(--syne);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -.02em;
-  color: var(--text);
-  margin-bottom: .6rem;
-}
-.personal-hero p { font-size: .95rem; color: var(--text2); max-width: 60ch; }
-
-/* Day cards grid */
-.day-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 1rem;
-  padding: 3rem 0;
-}
-
-.day-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: border-color .2s, transform .2s;
-  cursor: pointer;
-}
-.day-card:hover { border-color: var(--teal); transform: translateY(-2px); }
-.day-card.rest-card { opacity: .5; cursor: default; }
-.day-card.rest-card:hover { transform: none; border-color: var(--border); }
-
-.day-card-header {
-  padding: 1.1rem 1.3rem .8rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  border-bottom: 1px solid var(--border);
-}
-.day-card-day {
-  font-family: var(--syne);
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: -.01em;
-  color: var(--text);
-  line-height: 1;
-}
-.day-card-date-sub {
-  font-family: var(--mono);
-  font-size: .62rem;
-  letter-spacing: .1em;
-  color: var(--text3);
-  margin-top: .2rem;
-}
-.day-card-tag {
-  font-family: var(--mono);
-  font-size: .62rem;
-  letter-spacing: .1em;
-  padding: .2rem .65rem;
-  border-radius: 100px;
-  background: var(--teal-dim);
-  color: var(--teal);
-  border: 1px solid rgba(0,200,160,.25);
-  white-space: nowrap;
-  align-self: flex-start;
-}
-.day-card-tag.rest { background: var(--surface2); color: var(--text3); border-color: var(--border); }
-
-.day-card-body {
-  padding: 1rem 1.3rem;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: .8rem;
-}
-.day-card-focus {
-  font-family: var(--syne);
-  font-size: .88rem;
-  font-weight: 700;
-  color: var(--text);
-  line-height: 1.3;
-}
-.day-card-goal {
-  font-size: .78rem;
-  color: var(--text2);
-}
-.day-card-run {
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  font-family: var(--mono);
-  font-size: .68rem;
-  letter-spacing: .08em;
-  color: var(--teal);
-  background: var(--teal-dim);
-  border: 1px solid rgba(0,200,160,.2);
-  border-radius: 6px;
-  padding: .25rem .65rem;
-  align-self: flex-start;
-}
-
-/* Block list inside expanded day card */
-.day-card-blocks { display: flex; flex-direction: column; gap: .35rem; }
-.block-pill {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  padding: .45rem .7rem;
-  border-radius: 8px;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-}
-.block-pill-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.dot-warmup  { background: var(--text3); }
-.dot-main    { background: var(--teal); }
-.dot-core    { background: #e05c5c; }
-
-.block-pill-name {
-  font-size: .78rem;
-  color: var(--text2);
-  flex: 1;
-}
-.block-pill-dur {
-  font-family: var(--mono);
-  font-size: .62rem;
-  color: var(--text3);
-  letter-spacing: .06em;
-}
-
-/* Modal overlay */
-.modal-overlay {
-  position: fixed; inset: 0; z-index: 500;
-  background: rgba(11,12,16,.88);
-  backdrop-filter: blur(12px);
-  display: flex; align-items: center; justify-content: center;
-  padding: 1rem;
-  opacity: 0; pointer-events: none;
-  transition: opacity .25s;
-}
-.modal-overlay.open { opacity: 1; pointer-events: all; }
-
-.modal {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--r-lg);
-  width: 100%; max-width: 720px;
-  max-height: 88vh;
-  overflow-y: auto;
-  transform: translateY(16px);
-  transition: transform .25s;
-}
-.modal-overlay.open .modal { transform: translateY(0); }
-
-.modal-header {
-  padding: 1.4rem 1.6rem 1rem;
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0;
-  background: var(--surface);
-  z-index: 1;
-  display: flex; justify-content: space-between; align-items: flex-start;
-}
-.modal-close {
-  background: var(--surface2); border: 1px solid var(--border2);
-  border-radius: 8px; padding: .3rem .7rem;
-  font-family: var(--mono); font-size: .7rem;
-  color: var(--text2); cursor: pointer;
-  transition: border-color .15s, color .15s;
-}
-.modal-close:hover { border-color: var(--teal); color: var(--teal); }
-
-.modal-body { padding: 1.4rem 1.6rem; display: flex; flex-direction: column; gap: 1rem; }
-
-/* Block accordion in modal */
-.modal-block {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  overflow: hidden;
-}
-.modal-block summary {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: .8rem 1rem;
-  cursor: pointer; list-style: none; user-select: none;
-  transition: background .15s;
-}
-.modal-block summary:hover { background: var(--surface3); }
-.modal-block summary::-webkit-details-marker { display: none; }
-.modal-block-name {
-  display: flex; align-items: center; gap: .6rem;
-  font-family: var(--syne); font-size: .8rem; font-weight: 600; color: var(--text);
-}
-.modal-block-dur {
-  font-family: var(--mono); font-size: .65rem; color: var(--text3);
-  letter-spacing: .06em; margin-left: .5rem;
-}
-.modal-chev { color: var(--text3); font-size: .8rem; transition: transform .2s; }
-.modal-block[open] .modal-chev { transform: rotate(180deg); }
-
-.ex-table { border-top: 1px solid var(--border); }
-.ex-head {
-  display: grid;
-  grid-template-columns: 1fr 48px 100px 1fr;
-  gap: .5rem; padding: .45rem 1rem;
-  background: var(--bg2);
-}
-.ex-head span {
-  font-family: var(--mono); font-size: .58rem;
-  letter-spacing: .16em; color: var(--muted); text-transform: uppercase;
-}
-.ex-row {
-  display: grid;
-  grid-template-columns: 1fr 48px 100px 1fr;
-  gap: .5rem; padding: .75rem 1rem;
-  border-top: 1px solid var(--border);
-  transition: background .12s;
-}
-.ex-row:hover { background: rgba(255,255,255,.02); }
-.ex-name { font-size: .84rem; color: var(--text); font-weight: 500; line-height: 1.3; }
-.ex-sets { font-family: var(--mono); font-size: .84rem; color: var(--teal); font-weight: 500; }
-.ex-sets-core { color: #e05c5c; }
-.ex-reps { font-size: .78rem; color: var(--text2); line-height: 1.4; }
-.ex-notes { font-size: .74rem; color: var(--text3); line-height: 1.45; }
-
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .photo-card { display: none; }
-  .hero-strip-inner { grid-template-columns: 1fr; }
-  .grid.three { grid-template-columns: repeat(2, 1fr); }
-  .cv-split { grid-template-columns: 1fr; }
-  .ex-head, .ex-row { grid-template-columns: 1fr 44px 90px; }
-  .ex-notes { display: none; }
-  .day-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 560px) {
-  .grid.three { grid-template-columns: 1fr; }
-  .nav-links { gap: 1.2rem; }
-  .nav-links a { font-size: .75rem; }
-  .day-grid { grid-template-columns: 1fr; }
-  .ex-head, .ex-row { grid-template-columns: 1fr 44px; }
-  .ex-reps { display: none; }
-}
-
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
-
 <body>
-
-  <!-- ── NAV ── -->
-  <header class="site-header">
-    <div class="container">
-      <nav class="nav">
-        <a class="brand" href="#top">Alejandro Medina</a>
-        <div class="nav-links">
-          <a href="projects.html">Projects</a>
-          <a href="cv.html">CV</a>
-          <a href="personal.html">Personal</a>
-          <a href="#contact">Contact</a>
-        </div>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/modernist-3f44e637-c4d8-4d7e-9a7b-c22d0d0f9cf7/styles.css">
+<script src="_ds/modernist-3f44e637-c4d8-4d7e-9a7b-c22d0d0f9cf7/_ds_bundle.js"></script>
+<style>html{scroll-behavior:smooth;background:#161413}body{margin:0;background:#161413}a{color:var(--color-text);text-decoration:none}a:hover{color:var(--color-accent-700)}
+@keyframes pulse{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}
+.gnode{cursor:grab}.gnode:active{cursor:grabbing}
+.gnode,.gedge{transition:opacity .25s}</style>
+</helmet>
+<div style="--color-bg:#161413;--color-text:#f3f2f2;--color-divider:rgba(243,242,242,.4);--color-accent-700:oklch(0.76 0.16 30);--color-accent-100:oklch(0.32 0.09 30);--color-accent-800:oklch(0.88 0.08 30);--color-neutral-200:#2a2725;background:#161413;color:#f3f2f2;font-family:var(--font-body);min-height:100vh">
+  <header style="position:sticky;top:0;z-index:10;background:var(--color-bg);border-bottom:2px solid var(--color-divider)">
+    <div style="max-width:1200px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;height:64px;gap:24px">
+      <a href="#top" style="font-family:var(--font-heading);font-weight:800;font-size:18px;letter-spacing:-.01em">Alejandro Medina</a>
+      <nav style="display:flex;gap:28px;font-size:14px;font-weight:600">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="4"><a href="{{ n.href }}">{{ n.label }}</a></sc-for>
       </nav>
     </div>
   </header>
 
-  <main id="top">
-
-    <!-- ── HERO ── -->
-    <section class="hero">
-      <div class="hero-inner">
-
-        <!-- Left column -->
-        <div>
-          <!-- Badge row -->
-          <div class="hero-badge">
-            <div class="hero-avatar">AM</div>
-            <span class="hero-badge-text">Hi, I'm Alejandro</span>
-            <div class="hero-badge-socials">
-              <a href="https://www.linkedin.com/in/alejmedinajr/" target="_blank" rel="noreferrer" aria-label="LinkedIn">LinkedIn</a>
-              <a href="https://github.com/alejmedinajr" target="_blank" rel="noreferrer" aria-label="GitHub">GitHub</a>
-            </div>
-          </div>
-
-          <h1>Passionate to push the<br><em>boundaries of scientific computing.</em></h1>
-
-          <p class="hero-sub">
-            I'm a PhD student in Computer Science at <strong>Baylor University</strong> working on
-            <strong>Quality-Diversity</strong>, <strong>Evolutionary Computation</strong>, and
-            <strong>ML for scientific discovery</strong>.
-          </p>
-
-          <div class="hero-cta">
-            <a class="btn primary" href="projects.html">View Projects</a>
-            <a class="btn" href="#publications">Publications</a>
-            <a class="btn" href="assets/pdf/Alejandro_Medina_CV.pdf" target="_blank" rel="noreferrer">Download CV</a>
-          </div>
-
-          <div class="chips" aria-label="Research areas">
-            <span class="chip">quality diversity</span>
-            <span class="chip">evolutionary computation</span>
-            <span class="chip">neuroevolution</span>
-            <span class="chip">ai creativity</span>
-            <span class="chip">reinforcement learning</span>
-            <span class="chip">bioinformatics</span>
-            <span class="chip">genomics</span>
-            <span class="chip">predictive modeling</span>
-          </div>
+  <main id="top" style="max-width:1200px;margin:0 auto;padding:0 32px">
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));border-bottom:2px solid var(--color-divider)">
+      <div style="padding:72px 40px 56px 0;display:flex;flex-direction:column;gap:28px;justify-content:space-between">
+        <div style="font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700)">PhD Student, Computer Science, Baylor University</div>
+        <h1 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(44px,6.4vw,92px);line-height:.96;letter-spacing:-.035em;margin:0;text-wrap:balance">Diverse AI for complex biological spaces</h1>
+        <p style="font-size:18px;line-height:1.55;max-width:52ch;margin:0;text-wrap:pretty">I research evolutionary AI and machine learning to map complex spaces. I find diverse, high-quality answers where standard tools see only one.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="#projects" style="color:inherit">Explore projects</a>
+          <a class="btn btn-secondary" href="assets/pdf/Alejandro_Medina_CV.pdf" target="_blank" rel="noreferrer">Download CV</a>
+          <a class="btn btn-ghost" href="#contact">Contact</a>
         </div>
-
-        <!-- Right column — photo card -->
-        <div class="photo-card">
-          <div class="photo-placeholder">
-            <img src="assets/img/photo.JPG" alt="Alejandro Medina" />
-          </div>
-        </div>
-
+      </div>
+      <div class="grayscale" style="border-left:2px solid var(--color-divider);min-height:420px;background:var(--color-neutral-200)">
+        <img src="assets/img/photo.JPG" alt="Alejandro Medina" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;min-height:420px">
       </div>
     </section>
 
-    <!-- ── BOTTOM STRIP ── -->
-    <div class="hero-strip">
-      <div class="hero-strip-inner">
-        <div class="strip-card">
-          <p class="strip-card-label">Current Research</p>
-          <h3>Quality Diversity for Scientific Discovery</h3>
-          <p>Developing QD approaches to biological motif discovery; recovering diverse, high-quality hypotheses where standard tools converge to one. Current aim is to stress test current findings and to determine the effectivenss of QD when applied to this domain.</p>
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-bottom:2px solid var(--color-divider)">
+      <sc-for list="{{ stats }}" as="s" hint-placeholder-count="3">
+        <div style="padding:28px 24px 24px 0;display:flex;flex-direction:column;gap:6px">
+          <div style="font-family:var(--font-heading);font-weight:800;font-size:56px;letter-spacing:-.03em;line-height:1">{{ s.n }}</div>
+          <div style="font-size:14px;line-height:1.4">{{ s.l }}</div>
         </div>
-        <div class="strip-card">
-          <p class="strip-card-label">Current News</p>
-          <h3>Multiple Acceptances for current work!</h3>
-          <p>* Lightning Talk acceptance for the 2026 CRA Grad Cohort Workshop.</p>
-          <p>* Companion Paper accepted to 2026 GECCO Conference.</p>
-          <p>* Full scholarship awarded for 2026 Richard Tapia Conference to compete in ACM Graduate Poster Competition.</p>
+      </sc-for>
+      <div style="padding:28px 0 20px 24px;border-left:2px solid var(--color-divider);display:flex;flex-direction:column;gap:10px;min-width:190px">
+        <div style="display:flex;align-items:end;gap:10px;height:60px">
+          <sc-for list="{{ bars }}" as="b" hint-placeholder-count="3">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;gap:4px;height:100%">
+              <span style="font-size:12px;font-weight:700">{{ b.n }}</span>
+              <div style="width:100%;background:var(--color-accent);height:{{ b.h }}px"></div>
+            </div>
+          </sc-for>
         </div>
-      </div>
-    </div>
-
-    <!-- ── PROJECTS ── -->
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="section-head section-head-row">
-          <div>
-            <p class="section-kicker">Work</p>
-            <h2>Selected Projects</h2>
-            <p>Representative work across Quality-Diversity, bioinformatics, and interactive systems.</p>
-          </div>
-          <a class="see-more" href="projects.html">See all →</a>
-        </div>
-
-        <div class="grid three">
-          <article class="card project">
-            <div class="project-top">
-              <h3>Motif Discovery with MAP-Elites</h3>
-            </div>
-            <p>Framing DNA motif discovery as a quality-diversity problem to recover multiple high-quality motif hypotheses, compared against standard tools under matched criteria.</p>
-            <div class="meta">
-              <span class="tag">ongoing</span><span class="tag">quality-diversity</span><span class="tag">genomics</span>
-            </div>
-            <div class="actions">
-              <a class="link" href="https://arxiv.org/abs/2601.17808" target="_blank" rel="noreferrer">Preprint (accepted at GECCO '26) →</a>
-            </div>
-          </article>
-
-          <article class="card project">
-            <div class="project-top">
-              <h3>Alcohol Consumption Phenotyping</h3>
-            </div>
-            <p>ML analysis of alcohol-intake trajectory classifications in nonhuman primates, evaluating stability and predictive validity across modeling approaches.</p>
-            <div class="meta">
-              <span class="tag">ongoing</span><span class="tag">machine-learning</span><span class="tag">bioinformatics</span>
-            </div>
-          </article>
-
-          <article class="card project">
-            <div class="project-top">
-              <h3>Minecraft Flying Machines</h3>
-            </div>
-            <p>MAP-Elites-based algorithms for evolving flying machines in Minecraft with custom behavioral descriptors. Published at GECCO '23.</p>
-            <div class="meta">
-              <span class="tag">published</span><span class="tag">quality-diversity</span><span class="tag">creative-ai</span>
-            </div>
-            <div class="actions">
-              <a class="link" href="https://dl.acm.org/doi/10.1145/3583131.3590352" target="_blank" rel="noreferrer">GECCO 2023 Full Paper →</a>
-            </div>
-          </article>
-        </div>
+        <div style="display:flex;gap:10px"><sc-for list="{{ bars }}" as="b" hint-placeholder-count="3"><span style="flex:1;text-align:center;font-size:12px">{{ b.y }}</span></sc-for></div>
+        <div style="font-size:12px;line-height:1.4">Citations per year. Source: <a href="https://scholar.google.com/citations?user=nSbbG7gAAAAJ" target="_blank" rel="noreferrer" style="font-weight:700;color:var(--color-accent-700)">Google Scholar</a>, updated {{ updated }}</div>
       </div>
     </section>
 
-    <!-- ── PUBLICATIONS ── -->
-    <section id="publications" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker">Research</p>
-          <h2>Publications</h2>
-        </div>
-
-        <div class="card" style="margin-bottom:1rem;">
-          <h3>Accepted</h3>
-          <ol class="pubs">
-            <li>
-              <span class="pub-authors"><b>A. Medina</b> and M. L. Benton,</span>
-              <a class="pub-title link-title" href="https://arxiv.org/abs/2601.17808" target="_blank" rel="noreferrer">"Motif Diversity in Human Liver ChIP-seq Data Using MAP-Elites"</a>
-              <span class="pub-venue"> — Accepted @GECCO 2026 (Companion Paper).</span>
-            </li>
-            <li>
-              <span class="pub-authors"><b>A. Medina</b>, M. Richey, M. Mueller, and J. Schrum,</span>
-              <a class="pub-title link-title" href="https://dl.acm.org/doi/10.1145/3583131.3590352" target="_blank" rel="noreferrer">"Evolving Flying Machines in Minecraft Using Quality Diversity"</a>
-              <span class="pub-venue"> — GECCO '23, ACM, pp. 1418–1426.</span>
-            </li>
-            <li>
-              <span class="pub-authors">B. Anthony, <b>A. Medina</b>, and M. Mueller,</span>
-              <a class="pub-title link-title" href="https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4" target="_blank" rel="noreferrer">"Prioritizing Self, Team, or Job: Trends in Sincerity in Cooperative Polls"</a>
-              <span class="pub-venue"> — CDVE 2022, LNCS Vol. 13492, Springer, pp. 34–44.</span>
-            </li>
-          </ol>
-        </div>
-
-        <div class="card">
-          <h3>Selected Presentations</h3>
-          <ol class="pubs">
-            <li><span class="pub-venue">"Revisiting Predictive Models of Alcohol Consumption in Nonhuman Primates." AI for Biology &amp; Medicine Symposium, Denton TX, Oct 2025.</span></li>
-            <li><span class="pub-venue">"SNITCH." CCSC South Central, Apr 2024. <strong>(3rd Place)</strong></span></li>
-            <li><span class="pub-venue">"Evaluating an EDF Algorithm for a Dial-a-Ride Problem." Tapia Conference, Dallas TX, Sep 2023.</span></li>
-            <li><span class="pub-venue">"Using Quality Diversity to Evolve Flying Machines in Minecraft." CCSC South Central, Mar 2023. <strong>(3rd Place)</strong></span></li>
-            <li><span class="pub-venue">"Interactive Evolution of Novel Shapes in Minecraft." CCSC South Central, Mar 2023. <strong>(Honorable Mention)</strong></span></li>
-            <li><span class="pub-venue">"Prioritizing Self, Team, or Job." CDVE 2022 (virtual).</span></li>
-          </ol>
-        </div>
+    <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));border-bottom:2px solid var(--color-divider)">
+      <div style="padding:48px 40px 48px 0;display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700)">Current research</div>
+        <h2 style="font-family:var(--font-heading);font-weight:800;font-size:28px;letter-spacing:-.02em;margin:0">Quality-diversity for scientific discovery</h2>
+        <p style="margin:0;line-height:1.6;text-wrap:pretty">I apply quality-diversity search to biological motif discovery and test where it helps. Do diverse archives find hypotheses that standard tools miss?</p>
+      </div>
+      <div style="padding:48px 0 48px 40px;border-left:2px solid var(--color-divider);display:flex;flex-direction:column;gap:12px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--color-accent-700)">News, 2026</div>
+        <sc-for list="{{ news }}" as="n" hint-placeholder-count="3"><div style="display:flex;gap:12px;line-height:1.5"><span style="font-weight:700;flex:none;min-width:56px">{{ n.k }}</span><span>{{ n.t }}</span></div></sc-for>
       </div>
     </section>
 
-    <!-- ── CV ── -->
-    <section id="cv" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker">Background</p>
-          <h2>Curriculum Vitae</h2>
-          <p>Full academic and professional history. Download the PDF or view the interactive version.</p>
-        </div>
-        <div class="card">
-          <div class="cta-row" style="display:flex;gap:.7rem;flex-wrap:wrap;">
-            <a class="btn primary" href="assets/pdf/Alejandro Medina CV.pdf" target="_blank" rel="noreferrer">Download CV (PDF)</a>
-            <a class="btn" href="cv.html">View Full CV</a>
+    <section id="projects" style="padding:72px 0 0;scroll-margin-top:64px">
+      <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;padding-bottom:24px">
+        <h2 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(36px,5vw,64px);letter-spacing:-.03em;margin:0;line-height:1">Project map</h2>
+        <div style="font-size:14px;max-width:46ch;line-height:1.5">Circles are research areas, nested from all of computer science down to specific topics. Bigger areas hold more work. Drag nodes, drag the background to pan, and click a node to read about it.</div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;border:2px solid var(--color-divider)">
+        <div style="flex:1 1 100%;min-width:0;position:relative;background:#201e1d">
+          <div ref="{{ graphRef }}" style="width:100%;aspect-ratio:1000/800;min-height:560px;touch-action:none;user-select:none"></div>
+          <div style="position:absolute;top:12px;right:12px;display:flex;gap:6px">
+            <button onClick="{{ zoomIn }}" style="width:36px;height:36px;background:transparent;color:#f3f2f2;border:2px solid #f3f2f2;font:700 18px var(--font-body);cursor:pointer" aria-label="Zoom in">+</button>
+            <button onClick="{{ zoomOut }}" style="width:36px;height:36px;background:transparent;color:#f3f2f2;border:2px solid #f3f2f2;font:700 18px var(--font-body);cursor:pointer" aria-label="Zoom out">-</button>
+            <button onClick="{{ zoomReset }}" style="height:36px;padding:0 12px;background:transparent;color:#f3f2f2;border:2px solid #f3f2f2;font:700 12px var(--font-body);letter-spacing:.08em;text-transform:uppercase;cursor:pointer">Reset</button>
           </div>
         </div>
+        <aside style="flex:1 1 100%;background:#201e1d;color:#f3f2f2;border-top:2px solid var(--color-divider);padding:28px;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span style="background:{{ d.accent }};color:#201e1d;padding:3px 10px;font-size:11px;font-weight:700;letter-spacing:.04em">{{ d.status }}</span><span style="font-size:13px;font-weight:700;color:oklch(0.8 0.09 300)">{{ d.kicker }}</span></div>
+          <h3 style="font-family:var(--font-heading);font-weight:800;font-size:23px;line-height:1.15;letter-spacing:-.015em;margin:0">{{ d.title }}</h3>
+          <div style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:oklch(0.86 0.14 200);line-height:1.5">{{ d.role }}</div>
+          <p style="margin:0;line-height:1.55;font-size:15px;text-wrap:pretty">{{ d.desc }}</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{ d.tags }}" as="t"><span style="border:1px solid oklch(0.8 0.09 300);color:oklch(0.8 0.09 300);padding:3px 10px;font-size:11px">{{ t }}</span></sc-for></div>
+          <a href="{{ d.href }}" target="_blank" rel="noreferrer" style="font-size:14px;font-weight:700;color:oklch(0.86 0.14 200);display:{{ d.linkDisplay }}">{{ d.linkLabel }} →</a>
+          <div style="display:{{ d.awardDisplay }};align-items:center;gap:10px;margin-top:auto;padding-top:14px;border-top:1px solid var(--color-divider);font-size:14px;font-weight:700"><svg width="26" height="26" viewBox="0 0 22 22" style="flex:none"><circle cx="11" cy="11" r="10" fill="oklch(0.86 0.14 200)"></circle><polygon points="11,3.5 13.2,8.6 18.5,9 14.5,12.6 15.7,17.8 11,15 6.3,17.8 7.5,12.6 3.5,9 8.8,8.6" fill="#201e1d"></polygon></svg><span>{{ d.award }}</span></div>
+        </aside>
+      </div>
+      <div style="display:flex;gap:14px 28px;flex-wrap:wrap;align-items:center;padding:16px 20px;font-size:13px;background:#201e1d;color:#f3f2f2;border:2px solid var(--color-divider);border-top:0">
+        <span style="display:flex;align-items:center;gap:8px"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="8" fill="oklch(0.86 0.14 200)"></circle></svg>Paper</span>
+        <span style="display:flex;align-items:center;gap:8px"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="8" fill="oklch(0.93 0.18 100)"></circle></svg>Yellow, pulsing: in progress</span>
+        <span style="display:flex;align-items:center;gap:8px"><svg width="22" height="22" viewBox="0 0 22 22"><rect x="5" y="5" width="12" height="12" fill="oklch(0.86 0.14 200)"></rect></svg>Poster</span>
+        <span style="display:flex;align-items:center;gap:8px"><svg width="22" height="22" viewBox="0 0 22 22"><polygon points="11,3 19,18 3,18" fill="oklch(0.86 0.14 200)"></polygon></svg>Talk</span>
+        <span style="display:flex;align-items:center;gap:8px"><svg width="44" height="22" viewBox="0 0 44 22"><circle cx="11" cy="11" r="8" fill="oklch(0.86 0.14 200)"></circle><circle cx="33" cy="11" r="8" fill="#201e1d" stroke="oklch(0.86 0.14 200)" stroke-width="2.5"></circle></svg>Filled: I led it. Dark: I co-authored</span>
+        <span style="display:flex;align-items:center;gap:8px"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="10" fill="oklch(0.86 0.14 200)"></circle><polygon points="11,3.5 13.2,8.6 18.5,9 14.5,12.6 15.7,17.8 11,15 6.3,17.8 7.5,12.6 3.5,9 8.8,8.6" fill="#201e1d"></polygon></svg>Star: prize or award</span>
+        <span style="display:flex;align-items:center;gap:8px"><svg width="26" height="22" viewBox="0 0 26 22"><circle cx="13" cy="11" r="4" fill="#f3f2f2"></circle><circle cx="13" cy="11" r="6.5" fill="none" stroke="#f3f2f2"></circle><circle cx="13" cy="11" r="9" fill="none" stroke="#f3f2f2"></circle></svg>Rings: venue rank, C (1) up to A* (4)</span>
+        <span>Larger circle: full paper. Smaller circle: companion paper. Labels show the venue and year.</span>
       </div>
     </section>
 
-    <!-- ── CONTACT ── -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-kicker">Get in touch</p>
-          <h2>Contact</h2>
-          <p>Best way to reach me is email. You can also find me across the web.</p>
+    <section id="publications" style="padding:88px 0 0;scroll-margin-top:64px">
+      <h2 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(36px,5vw,64px);letter-spacing:-.03em;margin:0 0 24px;line-height:1">Publications</h2>
+      <sc-for list="{{ pubs }}" as="p" hint-placeholder-count="3">
+        <div style="display:grid;grid-template-columns:72px 1fr;gap:20px;padding:20px 0;border-top:2px solid var(--color-divider)">
+          <span style="font-weight:700">{{ p.year }}</span>
+          <div style="line-height:1.65;font-size:15px;max-width:80ch"><sc-for list="{{ p.authors }}" as="a"><span style="font-weight:{{ a.w }};color:{{ a.c }}">{{ a.t }}</span></sc-for>. {{ p.year }}. <a href="{{ p.href }}" target="_blank" rel="noreferrer" style="font-weight:700">{{ p.title }}</a>. In <em>{{ p.venue }}</em>. {{ p.rest }} <a href="{{ p.doi }}" target="_blank" rel="noreferrer" style="color:var(--color-accent-700);word-break:break-all">{{ p.doi }}</a></div>
         </div>
-        <div class="card contact-card">
-          <p class="contact-email"><a href="mailto:alejmedinajr@gmail.com">alejmedinajr@gmail.com</a></p>
-          <div class="contact-buttons">
-            <a class="social-btn" href="https://github.com/alejmedinajr" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="social-btn" href="https://www.linkedin.com/in/alejmedinajr/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="social-btn" href="https://scholar.google.com/citations?user=nSbbG7gAAAAJ" target="_blank" rel="noreferrer">Google Scholar</a>
+      </sc-for>
+      <div style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:32px 0 12px;color:var(--color-accent-700);border-top:2px solid var(--color-divider)">Selected presentations</div>
+      <sc-for list="{{ talks }}" as="g" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:72px 1fr;gap:20px;padding:12px 0;border-top:1px solid var(--color-divider)">
+          <span style="font-weight:700">{{ g.year }}</span>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.5"><sc-for list="{{ g.items }}" as="i"><div>{{ i.text }} <span style="font-weight:800;color:var(--color-accent-700)">{{ i.award }}</span></div></sc-for></div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section id="cv" style="padding:88px 0 0;scroll-margin-top:64px">
+      <div style="display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;padding-bottom:24px">
+        <h2 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(36px,5vw,64px);letter-spacing:-.03em;margin:0;line-height:1">Curriculum Vitae</h2>
+        <a class="btn btn-primary" href="assets/pdf/Alejandro_Medina_CV.pdf" target="_blank" rel="noreferrer" style="color:inherit">Download PDF</a>
+      </div>
+      <sc-for list="{{ cv }}" as="c" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:2px solid var(--color-divider)">
+          <div style="padding:24px 24px 24px 0;font-family:var(--font-heading);font-weight:800;font-size:22px;letter-spacing:-.015em">{{ c.h }}</div>
+          <div style="grid-column:span 2;padding:24px 0;display:flex;flex-direction:column;gap:18px;min-width:0">
+            <sc-for list="{{ c.rows }}" as="r">
+              <div style="display:flex;flex-direction:column;gap:4px;line-height:1.5">
+                <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap"><strong>{{ r.t }}</strong><span style="font-size:14px;font-weight:600">{{ r.d }}</span></div>
+                <div style="font-size:15px">{{ r.s }}</div>
+              </div>
+            </sc-for>
           </div>
-          <footer class="footer">
-            <p>© <span id="year"></span> Alejandro Medina. Built with GitHub Pages.</p>
-          </footer>
         </div>
-      </div>
+      </sc-for>
     </section>
 
+    <section id="contact" style="margin-top:88px;background:var(--color-accent);color:#fff;scroll-margin-top:64px;padding:64px 40px;display:flex;flex-direction:column;gap:28px;border-bottom:2px solid var(--color-divider)">
+      <div style="font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase">Get in touch</div>
+      <a href="mailto:alejmedinajr@gmail.com" style="color:#fff;font-family:var(--font-heading);font-weight:800;font-size:clamp(28px,5.5vw,76px);letter-spacing:-.03em;line-height:1;word-break:break-word">alejmedinajr@gmail.com</a>
+      <div style="display:flex;gap:28px;flex-wrap:wrap;font-weight:700;font-size:16px">
+        <a href="https://github.com/alejmedinajr" target="_blank" rel="noreferrer" style="color:#fff;text-decoration:underline;text-underline-offset:4px">GitHub</a>
+        <a href="https://www.linkedin.com/in/alejmedinajr/" target="_blank" rel="noreferrer" style="color:#fff;text-decoration:underline;text-underline-offset:4px">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=nSbbG7gAAAAJ" target="_blank" rel="noreferrer" style="color:#fff;text-decoration:underline;text-underline-offset:4px">Google Scholar</a>
+      </div>
+    </section>
+    <footer style="padding:20px 0 32px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><span>© {{ year }} Alejandro Medina</span><span>Waco, TX</span></footer>
   </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sel: null, hov: null, filter: null, sch: { updated: '2026-10-09', publications: 3, citations: 11, h_index: 1, per_year: { 2024: 5, 2025: 2, 2026: 3 } } };
+  graphRef = React.createRef();
+  LAV = 'oklch(0.8 0.09 300)';
+  CY = 'oklch(0.86 0.14 200)';
+  YL = 'oklch(0.93 0.18 100)';
+  TREE = { id: 'cs', l: 'Computer Science', c: [
+    { id: 'ai', l: 'Artificial Intelligence', c: [
+      { id: 'ec', l: 'Evolutionary Computation', c: [{ id: 'qd', l: 'Quality-Diversity', leaf: 1 }] },
+      { id: 'ml', l: 'Machine Learning', leaf: 1 } ] },
+    { id: 'alg', l: 'Algorithms', leaf: 1 },
+    { id: 'hum', l: 'Human Systems', leaf: 1 } ] };
+  SIZE = { full: 56, companion: 38, wip: 30, poster: 20, talk: 21 };
+  KIND = { full: 'Full paper', companion: 'Companion paper', wip: 'Paper in progress', poster: 'Poster', talk: 'Lightning talk' };
+  RANK = ['', 'C', 'B', 'A', 'A*'];
+  PATH = { qd: 'AI / Evolutionary Computation / Quality-Diversity', ml: 'AI / Machine Learning', alg: 'Algorithms', hum: 'Human Systems' };
+  P = [
+    { id: 'motif', short: 'GECCO 2026', t: 'Motif Diversity in Human Liver ChIP-seq Data Using MAP-Elites', year: 2026, venue: 'GECCO 2026 Companion (also presented as a poster)', k: 'companion', act: 0, rank: 3, lead: 1, leaf: 'qd', desc: 'Frames DNA motif discovery as a quality-diversity problem, so one run returns many strong motif hypotheses. Compared against standard tools under matched criteria.', tags: ['Quality-diversity', 'Genomics'], href: 'https://dl.acm.org/doi/10.1145/3795101.3805456', ll: 'Read the paper' },
+    { id: 'fly', short: 'GECCO 2023', t: 'Evolving Flying Machines in Minecraft Using Quality Diversity', year: 2023, venue: 'GECCO 2023', k: 'full', act: 0, rank: 3, lead: 1, leaf: 'qd', desc: 'MAP-Elites algorithms that evolve flying machines in Minecraft, guided by custom behavioral descriptors.', tags: ['Quality-diversity', 'Creative AI'], href: 'https://dl.acm.org/doi/10.1145/3583131.3590352', ll: 'Read the paper' },
+    { id: 'flyp', short: 'CCSC 2023', t: 'Using Quality Diversity to Evolve Flying Machines in Minecraft', year: 2023, venue: 'CCSC South Central 2023', k: 'poster', act: 0, rank: 0, lead: 1, award: '3rd place', leaf: 'qd', desc: 'Poster version of the flying machines work, presented at the CCSC undergraduate poster competition.', tags: ['Quality-diversity', 'Creative AI'] },
+    { id: 'shapes', short: 'CCSC 2023', t: 'Interactive Evolution of Novel Shapes in Minecraft', year: 2023, venue: 'CCSC South Central 2023', k: 'poster', act: 0, rank: 0, lead: 1, award: 'Honorable mention', leaf: 'qd', desc: 'Users guide the evolution of new voxel shapes in Minecraft with their own aesthetic taste.', tags: ['Interactive evolution', 'Creative AI'] },
+    { id: 'cra', short: 'CRA-WP 2026', t: 'Motif Diversity in Human Liver ChIP-seq Data Using MAP-Elites', year: 2026, venue: 'CRA Grad Cohort Workshop 2026', k: 'talk', act: 0, rank: 0, lead: 1, leaf: 'qd', desc: 'A lightning talk on this work, accepted at the 2026 CRA Grad Cohort Workshop.', tags: ['Talk'] },
+    { id: 'tapia', short: 'CMD-IT/Tapia 2026', t: 'Using Quality Diversity for Motif Discovery', year: 2026, venue: 'Tapia Conference 2026', k: 'poster', act: 0, rank: 1, lead: 1, award: '3rd place', leaf: 'qd', desc: 'Poster for the ACM Graduate Poster Competition at the 2026 Tapia Conference. It won 3rd place and came with a full conference scholarship.', tags: ['Poster competition'] },
+    { id: 'etoh', short: 'AI4BM 2025', t: 'Revisiting Predictive Models of Alcohol Consumption in Nonhuman Primates', year: 2025, venue: 'AI for Biology and Medicine Symposium 2025', k: 'poster', act: 0, rank: 0, lead: 1, leaf: 'ml', desc: 'Machine learning on behavioral and phenotypic data to classify future drinking severity, checking how stable the predictions are.', tags: ['Machine learning', 'Bioinformatics'] },
+    { id: 'edf', short: 'CMD-IT/Tapia 2023', t: 'Evaluating an Earliest Deadline First Algorithm for a Dial-a-Ride Problem', year: 2023, venue: 'Tapia 2023', k: 'poster', act: 0, rank: 1, lead: 1, leaf: 'alg', desc: 'Benchmarks existing scheduling algorithms against an earliest-deadline-first approach for time-windowed routing.', tags: ['Algorithms', 'Scheduling'], href: 'https://github.com/alejmedinajr/ImplementingEDF', ll: 'View the code' },
+    { id: 'polls', short: 'CDVE 2022', t: 'Prioritizing Self, Team, or Job: Trends in Sincerity in Cooperative Polls', year: 2022, venue: 'CDVE 2022', k: 'full', act: 0, rank: 1, lead: 0, leaf: 'hum', desc: 'Studies how US respondents weigh themselves, their team, and the job when answering cooperative scheduling polls.', tags: ['Voting theory', 'Analysis'], href: 'https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4', ll: 'Read the paper' },
+    { id: 'snitch', short: 'CCSC 2024', t: 'SNITCH: Southwestern\'s Newest Innovation to Cultivate Honor', year: 2024, venue: 'CCSC South Central 2024', k: 'poster', act: 0, rank: 0, lead: 1, award: '3rd place', leaf: 'hum', desc: 'An anonymous, AI-assisted honor code reporting system built to raise reporting rates while keeping students psychologically safe.', tags: ['Systems', 'HCI'] },
+    { id: 'w1', short: 'Evo* 2027', t: 'Variable-Length Quality-Diversity Search for Structurally Competitive Motif Discovery', year: 2027, venue: 'Evo* 2027 (in preparation)', k: 'full', act: 1, rank: 2, lead: 1, leaf: 'qd', desc: 'A manuscript in progress, planned for submission to Evo* 2027.', tags: ['In progress', 'Motif discovery'] },
+    { id: 'w2', short: 'GECCO 2027', t: 'Comparative Diversity Mechanisms for Transcription Factor Motif Discovery', year: 2027, venue: 'GECCO 2027 (in preparation)', k: 'full', act: 1, rank: 3, lead: 1, leaf: 'qd', desc: 'A manuscript in progress, planned for submission to GECCO 2027.', tags: ['In progress', 'Motif discovery'] },
+    { id: 'w3', short: 'ICLR 2027', t: 'Using a Hybrid Method to Further Separate Motif Family Members', year: 2027, venue: 'ICLR 2027 (in preparation)', k: 'full', act: 1, rank: 4, lead: 1, leaf: 'ml', desc: 'A manuscript in progress, planned for submission to ICLR 2027.', tags: ['In progress', 'Motif discovery'] },
+  ];
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  componentDidMount() {
+    this.build();
+    fetch('assets/data/scholar.json?v=' + Date.now()).then(r => r.ok ? r.json() : null).then(j => { if (j) this.setState({ sch: j }); }).catch(() => {});
+  }
+  componentWillUnmount() { cancelAnimationFrame(this.raf); }
+  componentDidUpdate() { this.focus(); }
+
+  wrap(s, m) { m = m || 22; const out = []; let cur = ''; s.split(' ').forEach(w => { if (cur && (cur + ' ' + w).length > m) { out.push(cur); cur = w; } else cur = cur ? cur + ' ' + w : w; }); if (cur) out.push(cur); return out; }
+  tspans(t, lines, FS) { const NS = 'http://www.w3.org/2000/svg'; lines.forEach((ln, i) => { const s = document.createElementNS(NS, 'tspan'); s.setAttribute('x', 0); s.setAttribute('dy', i ? FS * 1.15 : 0); s.textContent = ln; t.appendChild(s); }); }
+
+  shape(el, type, r, a, parent) {
+    if (type === 'talk') { const s = r * 1.2; return el('polygon', { points: '0,' + (-s) + ' ' + (s * .95) + ',' + (s * .62) + ' ' + (-s * .95) + ',' + (s * .62), ...a }, parent); }
+    if (type === 'poster') { const s = r * .88; return el('rect', { x: -s, y: -s, width: 2 * s, height: 2 * s, ...a }, parent); }
+    return el('circle', { r, ...a }, parent);
+  }
+
+  place(cs) {
+    const G = 14, out = [];
+    cs.forEach((c, i) => {
+      if (i === 0) { c.x = 0; c.y = 0; } else if (i === 1) { c.x = out[0].r + c.r + G; c.y = 0; } else {
+        let best = null, bd = 1e9; const mx = out.reduce((s, o) => s + o.x, 0) / out.length, my = out.reduce((s, o) => s + o.y, 0) / out.length;
+        for (let a = 0; a < out.length; a++) for (let b = a + 1; b < out.length; b++) {
+          const A = out[a], B = out[b], ra = A.r + c.r + G, rb = B.r + c.r + G, dx = B.x - A.x, dy = B.y - A.y, d = Math.hypot(dx, dy);
+          if (!d || d > ra + rb || d < Math.abs(ra - rb)) continue;
+          const l = (ra * ra - rb * rb + d * d) / (2 * d), h = Math.sqrt(Math.max(0, ra * ra - l * l)), px = A.x + dx * l / d, py = A.y + dy * l / d;
+          [[px + h * dy / d, py - h * dx / d], [px - h * dy / d, py + h * dx / d]].forEach(([x, y]) => { if (out.every(o => Math.hypot(o.x - x, o.y - y) >= o.r + c.r + G - 1)) { const dd = Math.hypot(x - mx, y - my); if (dd < bd) { bd = dd; best = [x, y]; } } });
+        }
+        if (best) { c.x = best[0]; c.y = best[1]; } else { const l = out[out.length - 1]; c.x = l.x + l.r + c.r + G; c.y = 0; }
+      }
+      out.push(c);
+    });
+    let cx = 0, cy = 0, w = 0; out.forEach(o => { cx += o.x * o.r * o.r; cy += o.y * o.r * o.r; w += o.r * o.r; }); cx /= w; cy /= w;
+    for (let it = 0; it < 300; it++) {
+      let far = null, fd = -1; out.forEach(o => { const d = Math.hypot(o.x - cx, o.y - cy) + o.r; if (d > fd) { fd = d; far = o; } });
+      const dx = far.x - cx, dy = far.y - cy, dd = Math.hypot(dx, dy) || 1, st = 2.5 * (1 - it / 300) + .05; cx += dx / dd * st; cy += dy / dd * st;
+    }
+    let R = 0; out.forEach(o => { o.x -= cx; o.y -= cy; R = Math.max(R, Math.hypot(o.x, o.y) + o.r); });
+    return R;
+  }
+
+  layout() {
+    const K = .85;
+    const lay = node => {
+      node.tw = node.l.length * this.FS * (node === this.TREE ? 1.3 : node.leaf ? 1 : 1.12) * .8;
+      if (node.leaf) {
+        const ns = this.nodes.filter(n => n.p.leaf === node.id).sort((a, b) => b.R - a.R);
+        ns.forEach(n => { n.hw = Math.max(n.R, n.lw / 2); n.leaf = node; });
+        const cs = ns.map(n => ({ n, r: Math.max(n.R + 8, n.hw * .7) }));
+        this.place(cs); cs.forEach(c => { c.n.lx = c.x; c.n.ly = c.y; });
+        for (let it = 0; it < 1000; it++) {
+          const gr = it < 700 ? .07 * (1 - it / 700) : 0;
+          if (gr) { let cx = 0, cy = 0; ns.forEach(n => { cx += n.lx; cy += n.ly; }); cx /= ns.length; cy /= ns.length; ns.forEach(n => { n.lx += (cx - n.lx) * gr; n.ly += (cy - n.ly) * gr; }); }
+          for (let i = 0; i < ns.length; i++) for (let j = i + 1; j < ns.length; j++) {
+            const p = ns[i], q = ns[j], ox = p.hw + q.hw + 16 - Math.abs(q.lx - p.lx);
+            const oy = Math.min(p.ly + p.R + p.lh, q.ly + q.R + q.lh) - Math.max(p.ly - p.R, q.ly - q.R) + 16;
+            if (ox > 0 && oy > 0) {
+              if (ox < oy) { const d = (q.lx >= p.lx ? 1 : -1) * ox / 2; p.lx -= d; q.lx += d; }
+              else { const d = ((q.ly + q.lh / 2) >= (p.ly + p.lh / 2) ? 1 : -1) * oy / 2; p.ly -= d; q.ly += d; }
+            }
+          }
+        }
+        let cx = 0, cy = 0; ns.forEach(n => { cx += n.lx; cy += n.ly + n.lh / 2; }); cx /= ns.length; cy /= ns.length;
+        let m = 0;
+        ns.forEach(n => { n.lx -= cx; n.ly -= cy; [[-1, -n.R], [1, -n.R], [-1, n.R + n.lh], [1, n.R + n.lh]].forEach(([s, y]) => { m = Math.max(m, Math.hypot(n.lx + s * n.hw, n.ly + y)); }); });
+        node.r = Math.max(m + 18, node.tw / 2.1);
+        return;
+      }
+      node.c.forEach(lay);
+      const cs = node.c.slice().sort((p, q) => q.r - p.r).map(c => ({ c, r: c.r }));
+      const R = this.place(cs); cs.forEach(o => { o.c.x = o.x; o.c.y = o.y; });
+      node.r = Math.max(R + 22 + (node.c.length === 1 ? 24 : 0), node.tw / 2.1);
+    };
+    lay(this.TREE);
+    const abs = (node, ox, oy, depth) => { node.ax = ox + (node.x || 0); node.ay = oy + (node.y || 0); node.depth = depth; (node.c || []).forEach(c => abs(c, node.ax, node.ay, depth + 1)); };
+    abs(this.TREE, 0, 0, 0);
+  }
+
+  build() {
+    const host = this.graphRef.current; if (!host || this.svg) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+    const BG = '#f3f2f2', AC = this.CY, INK = '#201e1d', LAV = this.LAV;
+    const nodes = this.nodes = this.P.map((p, i) => ({ p, id: p.id, r: this.SIZE[p.k], R: this.SIZE[p.k] + p.rank * 7, vx: 0, vy: 0, ph: i * 1.7 }));
+    let FS = 14;
+    for (let it = 0; it < 6; it++) {
+      this.FS = FS;
+      const tmp = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); host.appendChild(tmp);
+      nodes.forEach(n => { const t = document.createElementNS('http://www.w3.org/2000/svg', 'text'); t.setAttribute('font-size', FS); t.setAttribute('font-weight', 600); t.setAttribute('font-family', 'var(--font-body)'); n.lines = n.lines || this.wrap(n.p.short); this.tspans(t, n.lines, FS); tmp.appendChild(t); n.lw = t.getBBox().width; n.lh = n.lines.length * FS * 1.15 + 8; });
+      host.removeChild(tmp);
+      this.layout();
+      const D = 2 * this.TREE.r + 30, k = Math.min((host.clientWidth || 840) / (D * 1000 / 760), (host.clientHeight || 640) / D), want = 12.5 / k;
+      if (Math.abs(want - FS) < .5) break; FS = (FS + want) / 2;
+    }
+    const T = this.TREE, W0 = (2 * T.r + 30) * 1000 / 760, H0 = 2 * T.r + 30;
+    this.vb0 = { x: -W0 / 2, y: -H0 / 2, w: W0, h: H0 }; this.vb = { ...this.vb0 };
+    const k0 = Math.min((host.clientWidth || 840) / W0, (host.clientHeight || 640) / H0); this.mg = 30 + 16 / k0;
+    const svg = this.svg = el('svg', { viewBox: [this.vb.x, this.vb.y, this.vb.w, this.vb.h].join(' '), width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid meet' }, host);
+    const defs = el('defs', {}, svg);
+    const pat = el('pattern', { id: 'g50', width: 50, height: 50, patternUnits: 'userSpaceOnUse' }, defs);
+    el('path', { d: 'M50 0H0V50', fill: 'none', stroke: BG, 'stroke-opacity': .08, 'stroke-width': 1 }, pat);
+    const bgr = this.bgr = el('rect', { x: -3000, y: -3000, width: 6000, height: 6000, fill: 'url(#g50)' }, svg);
+    const world = this.world = el('g', {}, svg);
+    const regions = el('g', {}, world), labels = el('g', {}, world);
+    const all = []; const walk = n => { all.push(n); (n.c || []).forEach(walk); }; walk(T);
+    all.forEach(n => {
+      el('circle', { cx: n.ax, cy: n.ay, r: n.r, fill: LAV, 'fill-opacity': n.depth === 0 ? .03 : .045, stroke: LAV, 'stroke-opacity': n.depth === 0 ? .7 : .55, 'stroke-width': n.depth === 0 ? 2 : 1.5, 'stroke-dasharray': n.depth === 0 ? '3 7' : n.leaf ? '' : '' }, regions);
+      const t = el('text', { x: n.ax, y: n.ay - n.r + 4, 'text-anchor': 'middle', fill: LAV, 'font-size': this.FS * (n.depth === 0 ? 1.3 : n.leaf ? 1 : 1.12), 'font-weight': 800, 'letter-spacing': '.12em', 'font-family': 'var(--font-heading)', style: 'text-transform:uppercase;pointer-events:none;paint-order:stroke;stroke:#201e1d;stroke-width:7px;stroke-linejoin:round' }, labels); t.textContent = n.l;
+    });
+    const scan = el('rect', { x: -3000, width: 6000, height: 2, fill: LAV, 'fill-opacity': .18 }, world);
+    el('animate', { attributeName: 'y', from: -T.r, to: T.r, dur: '8s', repeatCount: 'indefinite' }, scan);
+    const nodeG = el('g', {}, world);
+    nodes.forEach((n, i) => {
+      const p = n.p, r = n.r, R = n.R, type = p.k === 'poster' ? 'poster' : p.k === 'talk' ? 'talk' : 'paper';
+      n.x = n.leaf.ax + n.lx; n.y = n.leaf.ay + n.ly;
+      const g = el('g', { class: 'gnode' }, nodeG); n.g = g; const col = p.act ? this.YL : this.CY;
+      el('circle', { r: R + 6, fill: 'transparent' }, g);
+      if (p.act) this.shape(el, type, r + 3, { fill: 'none', stroke: col, 'stroke-width': 2, class: 'pulse', style: 'animation-delay:' + ((i % 5) * .45) + 's' }, g);
+      for (let k = 1; k <= p.rank; k++) this.shape(el, type, r + k * 7 + 1, { fill: 'none', stroke: BG, 'stroke-width': 1.4 }, g);
+      this.shape(el, type, r, p.lead ? { fill: col, stroke: col, 'stroke-width': 2 } : { fill: INK, stroke: col, 'stroke-width': 3 }, g);
+      if (p.award) { const o = r * .55, q = o * .45, pts = []; for (let j = 0; j < 10; j++) { const rad = j % 2 ? q : o, ang = -Math.PI / 2 + j * Math.PI / 5; pts.push((Math.cos(ang) * rad).toFixed(1) + ',' + (Math.sin(ang) * rad + (type === 'talk' ? r * .25 : 0)).toFixed(1)); } el('polygon', { points: pts.join(' '), fill: p.lead ? INK : BG, style: 'pointer-events:none' }, g); }
+      const t = el('text', { y: R + 4 + .9 * this.FS, 'text-anchor': 'middle', fill: BG, 'font-size': this.FS, 'font-weight': 600, 'font-family': 'var(--font-body)', style: 'pointer-events:none' }, g); this.tspans(t, n.lines, this.FS);
+      const fl = this.wrap(p.t, 30), fg = el('g', { style: 'visibility:hidden;pointer-events:none' }, g); n.fg = fg;
+      const tt = el('text', { y: -(R + 16 + (fl.length - 1) * this.FS * 1.15), 'text-anchor': 'middle', fill: '#201e1d', 'font-size': this.FS, 'font-weight': 700, 'font-family': 'var(--font-body)' }, fg); this.tspans(tt, fl, this.FS);
+      { const bb = tt.getBBox(); fg.insertBefore(el('rect', { x: bb.x - 8, y: bb.y - 5, width: bb.width + 16, height: bb.height + 10, fill: col }), tt); }
+      g.addEventListener('pointerenter', () => { this.hovId = p.id; this.setState({ hov: p.id }); });
+      g.addEventListener('pointerleave', () => { this.hovId = null; this.setState({ hov: null }); });
+      g.addEventListener('pointerdown', e => this.dragStart(e, n));
+    });
+    svg.addEventListener('pointerdown', e => { if (!e.target.closest('.gnode')) this.panStart(e); });
+    nodes.forEach(n => { const bb = n.g.querySelector(':scope > text').getBBox(); n.lw = bb.width; n.lh = bb.y + bb.height - n.R + 2; });
+    for (let i = 0; i < 300; i++) this.tick();
+    this.draw(0);
+    const loop = t => { this.tick(); this.draw(t); this.raf = requestAnimationFrame(loop); };
+    this.raf = requestAnimationFrame(loop);
+    this.focus();
+  }
+
+  tick() {
+    const ns = this.nodes;
+    for (let i = 0; i < ns.length; i++) {
+      const a = ns[i];
+      for (let j = i + 1; j < ns.length; j++) {
+        const b = ns[j], ha = Math.max(a.R, (a.lw || 0) / 2), hb = Math.max(b.R, (b.lw || 0) / 2), pad = 16;
+        const ox = ha + hb + pad - Math.abs(b.x - a.x);
+        const ay0 = a.y - a.R, ay1 = a.y + a.R + (a.lh || 0), by0 = b.y - b.R, by1 = b.y + b.R + (b.lh || 0);
+        const oy = Math.min(ay1, by1) - Math.max(ay0, by0) + pad;
+        if (ox > 0 && oy > 0) {
+          const sx = ox < oy, dir = sx ? (b.x >= a.x ? 1 : -1) : ((b.y + (b.lh || 0) / 2) >= (a.y + (a.lh || 0) / 2) ? 1 : -1), amt = (sx ? ox : oy) * .12;
+          if (sx) { if (!a.fix) a.vx -= dir * amt; if (!b.fix) b.vx += dir * amt; } else { if (!a.fix) a.vy -= dir * amt; if (!b.fix) b.vy += dir * amt; }
+        }
+      }
+      if (!a.fix) { a.vx += (a.leaf.ax + a.lx - a.x) * .012; a.vy += (a.leaf.ay + a.ly - a.y) * .012; }
+    }
+    ns.forEach(n => {
+      if (n.fix) { n.vx = n.vy = 0; return; }
+      n.vx *= .8; n.vy *= .8; n.x += n.vx; n.y += n.vy;
+      const dx = n.x - n.leaf.ax, dy = n.y - n.leaf.ay, d = Math.hypot(dx, dy), lim = Math.max(0, n.leaf.r - 12);
+      if (d > lim) { n.x = n.leaf.ax + dx / d * lim; n.y = n.leaf.ay + dy / d * lim; }
+    });
+  }
+
+  draw(t) { this.nodes.forEach(n => { n.g.setAttribute('transform', 'translate(' + (n.x + Math.sin(t / 1500 + n.ph) * 2.5) + ',' + (n.y + Math.cos(t / 1800 + n.ph) * 2.5) + ')'); }); }
+
+  focus() {
+    if (!this.nodes) return;
+    const id = this.hovId || this.state.sel, f = this.state.filter;
+    const me = id && this.nodes.find(n => n.id === id);
+    const off = n => f === 'act' ? !n.p.act : f === 'done' ? !!n.p.act : false;
+    this.nodes.forEach(n => { n.fg.style.visibility = n === me ? 'visible' : 'hidden'; });
+    if (me && this.lastTop !== me.id) { this.lastTop = me.id; me.g.parentNode.appendChild(me.g); }
+    this.nodes.forEach(n => { let o = 1; if (off(n)) o = .12; else if (me && n.p.leaf !== me.p.leaf) o = .25; n.g.style.opacity = o; });
+  }
+
+  pt(e) { const p = this.svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(this.world.getScreenCTM().inverse()); }
+  dragStart(e, n) {
+    e.preventDefault(); e.stopPropagation(); const x0 = e.clientX, y0 = e.clientY; let moved = 0; n.fix = 1;
+    const mv = ev => { const q = this.pt(ev); n.x = q.x; n.y = q.y; moved = Math.max(moved, Math.hypot(ev.clientX - x0, ev.clientY - y0)); };
+    const up = () => { window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); n.fix = 0; if (moved < 5) this.setState({ sel: n.id }); };
+    window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
+  }
+  panStart(e) {
+    const k = 1 / this.svg.getScreenCTM().a; let lx = e.clientX, ly = e.clientY;
+    const mv = ev => { this.vb.x -= (ev.clientX - lx) * k; this.vb.y -= (ev.clientY - ly) * k; lx = ev.clientX; ly = ev.clientY; this.setVB(); };
+    const up = () => { window.removeEventListener('pointermove', mv); window.removeEventListener('pointerup', up); };
+    window.addEventListener('pointermove', mv); window.addEventListener('pointerup', up);
+  }
+  setVB() { const v = this.vb; this.svg.setAttribute('viewBox', v.x + ' ' + v.y + ' ' + v.w + ' ' + v.h); }
+  zoom(f) { const v = this.vb, o = this.vb0, w = Math.max(o.w * .3, Math.min(o.w * 1.8, v.w * f)), h = w * o.h / o.w; v.x += (v.w - w) / 2; v.y += (v.h - h) / 2; v.w = w; v.h = h; this.setVB(); }
+
+  renderVals() {
+    const S = this.state, P = this.P, cur = P.find(p => p.id === (S.hov || S.sel));
+    const d = cur ? {
+      status: cur.act ? 'In progress' : 'Finished', accent: cur.act ? this.YL : this.CY, kicker: cur.year + ' · ' + cur.venue, title: cur.t,
+      role: [this.PATH[cur.leaf], this.KIND[cur.k], cur.lead ? 'Lead' : 'Co-author', cur.rank ? 'Venue rank ' + this.RANK[cur.rank] : ''].filter(Boolean).join(' · '),
+      desc: cur.desc, award: cur.award ? cur.award + ', ' + cur.venue : '', awardDisplay: cur.award ? 'flex' : 'none', tags: cur.tags, href: cur.href || '#', linkDisplay: cur.href ? 'inline' : 'none', linkLabel: cur.ll }
+      : { accent: this.CY, status: 'Start here', kicker: P.length + ' pieces of work', title: 'Explore the map', role: '', desc: 'Hover or click a node to read about it. Nodes sit near the research areas they belong to, and work that shares an area is linked.', award: '', awardDisplay: 'none', tags: ['Drag me around'], href: '#', linkDisplay: 'none', linkLabel: '' };
+    const legend = [['act', 'Active'], ['done', 'Finished']].map(([k, label]) => ({
+      label, count: P.filter(p => k === 'act' ? p.act : !p.act).length,
+      btnBg: S.filter === k ? 'var(--color-accent-200)' : 'transparent',
+      pick: () => this.setState(s => ({ filter: s.filter === k ? null : k })) }));
+    const me = a => a.map(t => ({ t, w: t === 'Alejandro Medina' ? 800 : 400, c: t === 'Alejandro Medina' ? 'var(--color-accent-700)' : 'inherit' }));
+    const pubs = [
+      { year: 2026, authors: me(['Alejandro Medina', ' and Mary Lauren Benton']), title: 'Motif Diversity in Human Liver ChIP-seq Data Using MAP-Elites', venue: 'Proceedings of the Genetic and Evolutionary Computation Conference Companion (GECCO \'26 Companion)', rest: 'Association for Computing Machinery, New York, NY, USA, 637–640.', href: 'https://dl.acm.org/doi/10.1145/3795101.3805456', doi: 'https://doi.org/10.1145/3795101.3805456' },
+      { year: 2023, authors: me(['Alejandro Medina', ', Melanie Richey, Mark Mueller, and Jacob Schrum']), title: 'Evolving Flying Machines in Minecraft Using Quality Diversity', venue: 'Proceedings of the Genetic and Evolutionary Computation Conference (GECCO \'23)', rest: 'Association for Computing Machinery, New York, NY, USA, 1418–1426.', href: 'https://dl.acm.org/doi/10.1145/3583131.3590352', doi: 'https://doi.org/10.1145/3583131.3590352' },
+      { year: 2022, authors: me(['Barbara M. Anthony, ', 'Alejandro Medina', ', and Mark Mueller']), title: 'Prioritizing Self, Team, or Job: Trends in Sincerity in Cooperative Polls', venue: 'Cooperative Design, Visualization, and Engineering (CDVE 2022), Yuhua Luo (Ed.). Lecture Notes in Computer Science, Vol. 13492', rest: 'Springer, Cham, 33–44.', href: 'https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4', doi: 'https://doi.org/10.1007/978-3-031-16538-2_4' },
+    ];
+    const T = (text, award) => ({ text, award: award ? '(' + award + ': Poster Competition)' : '' });
+    const talks = [
+      { year: 2026, items: [T('Using Quality Diversity for Motif Discovery. ACM Graduate Poster, CMD-IT/Tapia Conference', '3rd Place'), T('Motif Diversity in Human Liver ChIP-seq Data Using MAP-Elites. Lightning talk, CRA-WP Grad Cohort Workshop'), T('Motif Diversity in Human Liver ChIP-seq Data Using MAP-Elites. Poster, GECCO 2026 Companion')] },
+      { year: 2025, items: [T('Revisiting Predictive Models of Alcohol Consumption in Nonhuman Primates. AI for Biology and Medicine Symposium, Denton, TX')] },
+      { year: 2024, items: [T('SNITCH: Southwestern\'s Newest Innovation to Cultivate Honor. CCSC South Central', '3rd Place')] },
+      { year: 2023, items: [T('Using Quality Diversity to Evolve Flying Machines in Minecraft. CCSC South Central', '3rd Place'), T('Interactive Evolution of Novel Shapes in Minecraft. CCSC South Central', 'Honorable Mention'), T('Evaluating an Earliest Deadline First Algorithm for a Dial-a-Ride Problem. CMD-IT/Tapia Conference, Dallas, TX'), T('Evolving Flying Machines in Minecraft Using Quality Diversity. Southwestern University Undergraduate Research and Creative Works Symposium')] },
+      { year: 2022, items: [T('Prioritizing Self, Team, or Job: Trends in Sincerity in Cooperative Polls. CDVE 2022 (virtual)'), T('Using Quality Diversity to Generate Flying Machines in Minecraft. Southwestern University High Impact Experiences Celebration'), T('Interactive Evolution of Novel Shapes in Minecraft. Southwestern University High Impact Experiences Celebration')] },
+    ];
+    const cv = [
+      { h: 'Education', rows: [
+        { t: 'Baylor University, PhD in Computer Science', d: '2024 to present', s: 'Quality-diversity, evolutionary computation, reinforcement learning, generative models, and machine learning for bioinformatics.' },
+        { t: 'Southwestern University, BS in Computer Science', d: '2021 to 2024', s: 'Magna cum laude. Minors in Mathematics and Data Science. President of Pi Mu Epsilon, vice president of Upsilon Pi Epsilon, member of Omicron Delta Kappa.' } ] },
+      { h: 'Research', rows: [
+        { t: 'Graduate Research Assistant, Baylor University', d: '2025 to present', s: 'Advisor: Dr. Mary Lauren Benton. Quality-diversity for DNA motif discovery, alcohol consumption phenotyping and clustering, and evolutionary graph pruning.' },
+        { t: 'Undergraduate Research Assistant, Southwestern University', d: '2022 to 2023', s: 'Advisors: Dr. Barbara Anthony (scheduling and voting theory) and Dr. Jacob Schrum (quality-diversity and creative AI).' } ] },
+      { h: 'Experience', rows: [
+        { t: 'Graduate Teaching Assistant, Baylor University', d: '2024 to present', s: 'Waco, TX' },
+        { t: 'Undergraduate Research Mentor, Southwestern University', d: 'Jan to May 2024', s: 'Georgetown, TX' },
+        { t: 'Business Intelligence and Data Analytics Intern, Hy Cite Enterprises', d: 'Jun to Aug 2023', s: 'Madison, WI' },
+        { t: 'Computer Science Tutor, Southwestern University', d: 'Jan to May 2023', s: 'Georgetown, TX' } ] },
+      { h: 'Honors', rows: [
+        { t: 'ACM Graduate Poster Competition, 3rd place', d: '2026', s: 'Tapia Conference 2026, with a full conference scholarship.' },
+        { t: 'CRA Outstanding Undergraduate Researcher Award', d: '2024', s: '' },
+        { t: 'CCSC Undergraduate Poster Competition', d: '2023, 2024', s: '3rd place both years, plus an honorable mention in March 2023.' },
+        { t: 'Hispanic Scholarship Fund Scholar', d: '2023', s: '' },
+        { t: 'Grogan Lord Award in Computer Science', d: '2024', s: '' } ] },
+      { h: 'Skills', rows: [
+        { t: 'Languages and tools', d: '', s: 'Python, Java, C and C++, R, SQL, JavaScript, Haskell, Lisp, NASM x86, Git, Docker, LaTeX, React, Flutter.' },
+        { t: 'Spoken languages', d: '', s: 'English and Spanish' },
+        { t: 'Associations', d: '', s: 'ACM, IEEE, CRA, SACNAS, SHPE, LatinX in AI.' } ] },
+    ];
+    const sc = S.sch, py = Object.keys(sc.per_year || {}).sort().slice(-4), mx = Math.max(1, ...py.map(y => sc.per_year[y]));
+    return {
+      graphRef: this.graphRef, d, legend, pubs, talks, cv,
+      zoomIn: () => this.zoom(.8), zoomOut: () => this.zoom(1.25), zoomReset: () => { this.vb = { ...this.vb0 }; this.setVB(); },
+      year: new Date().getFullYear(),
+      updated: sc.updated,
+      nav: [{ href: '#projects', label: 'Projects' }, { href: '#publications', label: 'Publications' }, { href: '#cv', label: 'CV' }, { href: '#contact', label: 'Contact' }],
+      stats: [{ n: sc.publications, l: 'Publications' }, { n: sc.citations, l: 'Citations' }, { n: sc.h_index, l: 'h-index' }],
+      bars: py.map(y => ({ y, n: sc.per_year[y], h: Math.max(4, Math.round(sc.per_year[y] / mx * 50)) })),
+      news: [{ k: 'GECCO', t: 'My companion paper was accepted to GECCO 2026.' }, { k: 'CRA', t: 'My lightning talk was accepted at the 2026 CRA Grad Cohort Workshop.' }, { k: 'Tapia', t: 'I won 3rd place in the ACM Graduate Poster Competition at the 2026 Tapia Conference.' }],
+    };
+  }
+}
+</script>
 </body>
 </html>
