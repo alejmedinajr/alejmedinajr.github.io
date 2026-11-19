@@ -120,7 +120,7 @@ section { padding-top: 96px; }
 
 /* ---------- DJ stage ---------- */
 .stage { border-radius: 34px; padding: 10px; --beat: .5s; --t0: #22d3ee; --t1: #a78bfa; --t2: #ff5d6c; --glow: #22d3ee; --beam: hsl(190 85% 62% / .38); --ta: #22d3ee; --tb: #a78bfa; }
-.stage-inner { position: relative; height: clamp(700px, 62vw, 730px); border-radius: 26px; overflow: hidden; isolation: isolate; background: #eef6ff;
+.stage-inner { position: relative; height: clamp(560px, 48vw, 600px); border-radius: 26px; overflow: hidden; isolation: isolate; background: #eef6ff;
   box-shadow: inset 0 0 0 1px rgba(255,255,255,.8), inset 0 0 40px rgba(255,255,255,.5); }
 .px-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
 .stage-inner::after { content: ''; position: absolute; inset: 0; z-index: 6; pointer-events: none; border-radius: inherit;
@@ -130,7 +130,6 @@ section { padding-top: 96px; }
   background: conic-gradient(from 168deg at 50% 0%, transparent 0 8deg, var(--beam) 8deg 16deg, transparent 16deg 360deg); animation: beam calc(var(--beat) * 12) ease-in-out infinite alternate; margin-left: -75%; }
 .beams::after { animation-delay: calc(var(--beat) * -6); animation-direction: alternate-reverse; background: conic-gradient(from 190deg at 50% 0%, transparent 0 8deg, rgba(255,255,255,.4) 8deg 13deg, transparent 13deg 360deg); }
 @keyframes beam { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
-.discoball { position: absolute; z-index: 3; left: 50%; top: 0; width: 76px; margin-left: -38px; animation: ballsway calc(var(--beat) * 8) ease-in-out infinite alternate; transform-origin: 50% 0; pointer-events: none; filter: drop-shadow(0 8px 12px rgba(40,60,120,.25)); }
 @keyframes ballsway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
 .facet { animation: facet calc(var(--beat) * 10) linear infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes facet { 0% { transform: scaleX(.05); } 50% { transform: scaleX(1); } 100% { transform: scaleX(.05); } }
@@ -138,12 +137,6 @@ section { padding-top: 96px; }
 @keyframes twinkle { 50% { transform: scale(.3) rotate(45deg); opacity: .3; } }
 
 /* dancing cats */
-.dancers { position: absolute; z-index: 4; left: 8px; right: 8px; top: 70px; height: 210px; display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr)); align-content: center; justify-items: center; gap: 4px 2px; pointer-events: none; }
-.dancer { position: relative; width: 100px; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: auto; --fur: #8fe9f7; }
-.dancer:nth-child(even) { margin-top: 26px; }
-.d-sprite { display: block; width: 100%; transform-origin: 50% 92%; animation: var(--dance, bounce) calc(var(--beat) * 2) ease-in-out infinite; animation-delay: calc(var(--i) * -.17s); filter: drop-shadow(0 0 3px rgba(255,255,255,.9)) drop-shadow(0 6px 8px rgba(30,40,90,.25)); transition: filter .2s; }
-.d-sprite svg { width: 100%; height: auto; overflow: visible; }
-.dancer.m0 { --dance: bounce; } .dancer.m1 { --dance: sway; } .dancer.m2 { --dance: hop; } .dancer.m3 { --dance: shimmy; }
 @keyframes bounce { 0%, 100% { transform: translateY(0) scale(1.04, .95); } 50% { transform: translateY(-14px) scale(.97, 1.04); } }
 @keyframes sway { 0%, 100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
 @keyframes hop { 0%, 100% { transform: translateY(0) rotate(-4deg); } 25%, 75% { transform: translateY(-17px) rotate(0); } 50% { transform: translateY(0) rotate(4deg); } }
@@ -157,20 +150,15 @@ section { padding-top: 96px; }
 .c-head { transform-origin: 50px 62px; animation: tilt calc(var(--beat) * 2) ease-in-out infinite; }
 @keyframes tilt { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
 .glow-stick { filter: drop-shadow(0 0 4px currentColor); }
-.d-tag { position: absolute; left: 50%; top: 100%; transform: translateX(-50%); margin-top: -2px; white-space: nowrap; font-size: 10.5px; font-weight: 800; padding: 2px 9px; border-radius: 999px; color: var(--ink-2); background: rgba(255,255,255,.78); border: 1px solid #fff; transition: background .2s, color .2s; }
-.dancer.live .d-sprite { filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 16px var(--glow)); }
-.dancer.live .d-tag { background: #fff; color: #0b1a2e; border-color: var(--glow); box-shadow: 0 0 0 2px var(--glow); }
-.dancer:hover .d-sprite, .dancer:focus-visible .d-sprite { filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 12px var(--t1)); }
-.d-tip { position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -2px); width: max-content; max-width: 230px; padding: 9px 12px; border-radius: 14px; font-size: 12px; line-height: 1.35; text-align: left; color: var(--ink);
-  background: rgba(255,255,255,.94); border: 1px solid #fff; box-shadow: 0 8px 24px rgba(40,70,120,.22); opacity: 0; visibility: hidden; transition: opacity .15s; pointer-events: none; z-index: 12; }
-.d-tip small { display: block; margin-top: 3px; color: var(--ink-3); font-weight: 500; }
-.dancer:hover, .dancer:focus-visible { z-index: 11; }
-.dancer:hover .d-tip, .dancer:focus-visible .d-tip { opacity: 1; visibility: visible; }
 
 /* the DJ */
-.booth { position: absolute; z-index: 5; left: 50%; top: 296px; width: 216px; margin-left: -108px; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 40px; transition: transform .25s; }
-.booth:hover { transform: translateY(-3px); }
-.booth.drop-ready { transform: scale(1.1); filter: drop-shadow(0 0 22px var(--glow)); }
+.booth { position: absolute; z-index: 5; left: 50%; top: 6px; width: min(300px, 80%); transform: translateX(-50%); padding: 0; border: 0; background: none; cursor: pointer; transition: transform .25s, filter .25s; }
+.booth:hover { transform: translateX(-50%) translateY(-2px); }
+.booth.drop-ready { transform: translateX(-50%) scale(1.06); filter: drop-shadow(0 0 22px var(--glow)); }
+/* the gif has its own brick-wall backdrop: feather every edge so it melts into the pixel disco */
+.dj-gif { display: block; width: 100%; height: auto; image-rendering: pixelated; pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 48%, #000 52%, rgba(0,0,0,.55) 74%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 48%, #000 52%, rgba(0,0,0,.55) 74%, transparent 100%);
+  filter: saturate(1.1) contrast(1.05); }
 .dj-svg { width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 8px 12px rgba(30,40,90,.3)); }
 .dj-head { transform-origin: 120px 100px; animation: headbob calc(var(--beat) * 2) ease-in-out infinite; }
 @keyframes headbob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 25% { transform: translateY(4px) rotate(0); } 50% { transform: translateY(0) rotate(2deg); } 75% { transform: translateY(4px) rotate(0); } }
@@ -187,7 +175,7 @@ section { padding-top: 96px; }
 @keyframes fader { from { transform: translateY(-4px); } to { transform: translateY(8px); } }
 .xfade { animation: xfade calc(var(--beat) * 8) ease-in-out infinite alternate; }
 @keyframes xfade { from { transform: translateX(-8px); } to { transform: translateX(15px); } }
-.booth-tip { position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%); margin-bottom: -6px; width: max-content; padding: 5px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 700; color: var(--ink); background: rgba(255,255,255,.92); border: 1px solid #fff; opacity: 0; transition: opacity .15s; pointer-events: none; }
+.booth-tip { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); width: max-content; padding: 5px 12px; border-radius: 999px; font-size: 11.5px; font-weight: 700; color: var(--ink); background: rgba(255,255,255,.92); border: 1px solid #fff; opacity: 0; transition: opacity .15s; pointer-events: none; }
 .booth:hover .booth-tip, .booth:focus-visible .booth-tip { opacity: 1; }
 .dragging-record .booth-tip { opacity: 1; }
 .dragging-record .booth-tip::after { content: ' (drop here)'; }
@@ -207,9 +195,9 @@ section { padding-top: 96px; }
 .ctl { display: flex; gap: 5px; }
 .ctl button { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #fff; background: rgba(255,255,255,.7); cursor: pointer; font-size: 13px; line-height: 1; display: grid; place-items: center; transition: transform .15s, background .2s; }
 .ctl button:hover { background: #fff; transform: scale(1.1); }
-.crate { display: flex; gap: 10px; overflow-x: auto; padding: 4px 4px 8px; scrollbar-width: none; scroll-snap-type: x proximity; touch-action: pan-x; }
+.crate { --gap: 10px; display: flex; gap: var(--gap); overflow-x: auto; padding: 4px 4px 8px; scrollbar-width: none; scroll-snap-type: x proximity; touch-action: pan-x; }
 .crate::-webkit-scrollbar { display: none; }
-.sleeve { position: relative; flex: 0 0 100px; height: 132px; padding: 6px 6px 8px; border-radius: 14px; cursor: grab; user-select: none; scroll-snap-align: start; --c: var(--cyan); --cd: var(--cyan-d);
+.sleeve { position: relative; flex: 0 0 calc((100% - 4 * var(--gap)) / 5); min-width: 0; height: 132px; padding: 6px 6px 8px; border-radius: 14px; cursor: grab; user-select: none; scroll-snap-align: start; --c: var(--cyan); --cd: var(--cyan-d);
   background: linear-gradient(160deg, rgba(255,255,255,.88), rgba(255,255,255,.55)); border: 1.5px solid #fff; box-shadow: 0 6px 16px rgba(30,40,90,.2), inset 0 1px 0 #fff; transition: transform .18s, box-shadow .2s; display: flex; flex-direction: column; gap: 2px; }
 .sleeve.lav { --c: var(--lav); --cd: var(--lav-d); } .sleeve.yel { --c: var(--yel); --cd: #8a6400; }
 .sleeve:hover { transform: translateY(-5px) rotate(-1.5deg); }
@@ -364,10 +352,8 @@ section { padding-top: 96px; }
   .pub { grid-template-columns: 1fr; gap: 6px; }
 }
 @media (max-width: 640px) {
-  .dancers { grid-template-columns: repeat(4, 1fr); top: 78px; }
-  .dancer { width: 80px; }
-  .dancer:nth-child(even) { margin-top: 22px; }
-  .d-tag { font-size: 9px; padding: 2px 6px; }
+  .crate { --gap: 8px; }
+  .sleeve { flex-basis: calc((100% - 2 * var(--gap)) / 3.4); }
   .map-count { display: none; }
   .wrap, .site-header, .contact { padding-left: 16px; padding-right: 16px; }
   .brand span { display: none; }
