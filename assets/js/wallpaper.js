@@ -20,6 +20,5 @@
     requestAnimationFrame(loop);
   })(0);
   P.wall(document.querySelector('.site-header .bar'), { opacity: .26, cs: 16 });
-  P.wall(document.getElementById('map-stage'), { opacity: .42, cs: 20 });
   P.wall(document.querySelector('.contact-card'), { opacity: .3, cs: 22 });
 })();
