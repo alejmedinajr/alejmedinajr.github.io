@@ -1,7 +1,6 @@
 /* Detail cards: one modal shared by the habitat, the map and the publication list. */
 (function () {
   const P = (window.Portfolio = window.Portfolio || {});
-  const AREA = { qd: 'Quality-diversity', ml: 'Machine learning', alg: 'Algorithms', hum: 'Human systems' };
   const RANK = ['', 'C', 'B', 'A', 'A*'];
   P.byId = Object.fromEntries(window.WORK.map(w => [w.id, w]));
 
@@ -46,9 +45,8 @@
 
     const meta = h('div', 'meta');
     if (w.authors) meta.append(row('Authors', w.authors.join(', ')));
-    meta.append(row('Area', AREA[w.area]));
     meta.append(row('Where', w.place ? w.place.name : 'Venue location to be announced'));
-    if (w.tags && w.tags.length) { const t = h('div', 'chips'); w.tags.forEach(x => t.append(chip(x, 'lav'))); const d = h('div'); d.append(h('b', '', 'Tags'), t); meta.append(d); }
+    if (w.tags && w.tags.length) { const t = h('div', 'chips'); w.tags.filter(x => !/^(quality-diversity|machine learning|algorithms|human systems)$/i.test(x)).forEach(x => t.append(chip(x, 'lav'))); const d = h('div'); d.append(h('b', '', 'Tags'), t); meta.append(d); }
     card.append(meta);
 
     const acts = h('div', 'card-actions');

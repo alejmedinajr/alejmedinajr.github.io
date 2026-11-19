@@ -2,8 +2,8 @@
 (function () {
   const P = (window.Portfolio = window.Portfolio || {});
   P.KIND = { paper: 'Full paper', companion: 'Companion paper', preprint: 'Preprint', poster: 'Poster', talk: 'Talk' };
-  /* accent colour: cyan = quality-diversity, lavender = other areas, yellow = preprint */
-  P.colorOf = w => (w.kind === 'preprint' ? 'yel' : w.area === 'qd' ? 'cyan' : 'lav');
+  /* pin colour by kind: lavender = papers (preprints too; they only pulse), blue = posters, yellow = talks */
+  P.colorOf = w => (w.kind === 'poster' ? 'cyan' : w.kind === 'talk' ? 'yel' : 'lav');
   P.hash = s => { let h = 2166136261; for (const c of String(s)) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
   P.rng = seed => { let a = seed >>> 0; return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; };
   P.reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -54,7 +54,7 @@
     const dpr = Math.min(2, window.devicePixelRatio || 1), w = this.cv.clientWidth, h = this.cv.clientHeight;
     if (!w || !h) return;
     this.cv.width = w * dpr; this.cv.height = h * dpr; this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    this.cs = Math.max(14, Math.round(w / 30));
+    this.cs = this.fixedCs || Math.max(14, Math.round(w / 30));
     this.W = Math.ceil(w / this.cs); this.H = Math.ceil(h / this.cs);
     const r = P.rng(7); this.thr = Array.from({ length: this.W * this.H }, () => r());
     this.draw(this.now || 0);

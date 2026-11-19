@@ -126,8 +126,8 @@ section { padding-top: 96px; }
 .px-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: .3; }
 .stage-inner::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
   background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.1) 45%, rgba(255,255,255,.5)); }
-.dj { position: relative; z-index: 2; width: min(320px, 82%); margin: 0 auto; pointer-events: none; aspect-ratio: 440 / 392; overflow: hidden;
-  -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
+.dj { position: relative; z-index: 2; width: min(320px, 82%); margin: 0 auto; pointer-events: none; aspect-ratio: 440 / 420; overflow: hidden;
+  -webkit-mask-image: linear-gradient(#000 88%, transparent); mask-image: linear-gradient(#000 88%, transparent); }
 .dj-img { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 14px rgba(30,40,90,.28)); }
 .floor { position: relative; z-index: 3; display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px 8px; justify-items: center; margin-top: 8px; padding: 0 4px; }
 .dancer { position: relative; width: 88px; padding: 0 0 22px; border: 0; background: none; cursor: pointer; border-radius: 16px; transition: transform .2s; }
@@ -162,7 +162,7 @@ section { padding-top: 96px; }
 
 /* ---------- map ---------- */
 .map-card { padding: 10px; border-radius: 34px; }
-.map-stage { position: relative; border-radius: 26px; overflow: hidden; touch-action: none; user-select: none; cursor: grab;
+.map-stage { position: relative; isolation: isolate; border-radius: 26px; overflow: hidden; touch-action: none; user-select: none; cursor: grab;
   background: linear-gradient(180deg, rgba(150,225,250,.75), rgba(175,200,250,.7) 60%, rgba(205,185,250,.65));
   box-shadow: inset 0 0 40px rgba(255,255,255,.55), inset 0 2px 0 rgba(255,255,255,.9); }
 .map-stage.grabbing { cursor: grabbing; }
@@ -192,7 +192,7 @@ section { padding-top: 96px; }
 .pin.yel  .drop { fill: var(--yel); }  .pin.yel .glyph { stroke: #8a6400; }
 .pin .award { fill: var(--red); stroke: #fff; stroke-width: 1.6; }
 .pin .award-star { fill: #fff; }
-.pin .pulse { fill: none; stroke: var(--yel); stroke-width: 2.5; transform-box: fill-box; transform-origin: center; animation: pinpulse 2.2s ease-out infinite; }
+.pin .pulse { fill: none; stroke: var(--lav-d); stroke-width: 2.5; transform-box: fill-box; transform-origin: center; animation: pinpulse 2.2s ease-out infinite; }
 @keyframes pinpulse { from { transform: scale(.6); opacity: .95; } to { transform: scale(2.1); opacity: 0; } }
 .pin-label { display: none; font: 700 11px var(--font-b); fill: var(--ink-2); text-anchor: middle; paint-order: stroke; stroke: rgba(255,255,255,.95); stroke-width: 3.5px; stroke-linejoin: round; pointer-events: none; }
 .zoomed .pin-label { display: block; }
@@ -295,3 +295,9 @@ section { padding-top: 96px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* the CDVE 2022 pixel disco as wallpaper behind navbar, map water and contact card */
+.wall-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; border-radius: inherit; pointer-events: none; }
+.site-header .bar, .contact-card { isolation: isolate; overflow: hidden; }
+.leg-pulse { width: 16px; height: 16px; border-radius: 50%; background: var(--lav); position: relative; display: inline-block; border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.2); }
+.leg-pulse::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid var(--lav-d); animation: pinpulse 2.2s ease-out infinite; }

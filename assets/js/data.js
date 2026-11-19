@@ -37,7 +37,7 @@ window.WORK = [
     desc: 'A study of 200+ students at 40+ US colleges on whether people vote sincerely in cooperative scheduling polls. Fewer than 3% were fully sincere across all scenarios, and sincerity varied with meeting type, region, and institutional Pell Grant eligibility. Presented at the 19th CDVE as a paper presentation [T1].',
     tags: ['Voting theory', 'Analysis'],
     links: [{ label: 'Read the paper', href: 'https://link.springer.com/chapter/10.1007/978-3-031-16538-2_4' }],
-    place: { name: 'Presented virtually (work done in Georgetown, TX, USA)', label: 'Georgetown (virtual)', lat: 30.63, lng: -97.68, virtual: true } },
+    place: { name: 'Kraków, Poland (held virtually because of political tensions in the region)', label: 'Kraków (virtual)', lat: 50.06, lng: 19.94, virtual: true } },
 
   { id: 'prepr', cv: 'P1', short: 'arXiv 2026', title: 'Diversity Preservation Recovers Transcription Factor Motifs Across Challenging Confounder Landscapes', year: 2026,
     venue: 'Preprint on arXiv, under review at EvoApplications 2027', kind: 'preprint', lead: 1, rank: 0, area: 'qd',
