@@ -49,6 +49,7 @@
   const GLYPH = {
     paper: 'M-4 -32h5.5l3.5 3.5v9h-9z M1.5 -32v3.5h3.5 M-2 -24h5 M-2 -21h5',
     companion: 'M-4 -32h5.5l3.5 3.5v9h-9z M1.5 -32v3.5h3.5 M-2 -24h5 M-2 -21h5',
+    preprint: 'M-4 -32h5.5l3.5 3.5v9h-9z M1.5 -32v3.5h3.5 M-2 -24h5 M-2 -21h5',
     poster: 'M-6.5 -32h13v9h-13z M-2.5 -23l-2 6 M2.5 -23l2 6 M-3 -29h6 M-3 -26h3.5',
     talk: 'M-6.5 -31h13v9h-6l-3.5 3.5v-3.5h-3.5z M-3 -27.5h6 M-3 -25h3.5'
   };
@@ -56,7 +57,7 @@
   function pinEl(it) {
     const w = it.w, col = P.colorOf(w);
     const g = mk('g', { class: 'pin ' + col + (sel === w.id ? ' sel' : ''), tabindex: 0, role: 'button', 'aria-label': w.title + ', ' + w.venue }), body = mk('g', { class: 'pin-body' }, g);
-    if (w.status === 'wip') mk('circle', { class: 'pulse', cx: 0, cy: -26, r: 14 }, g);
+    if (w.kind === 'preprint') mk('circle', { class: 'pulse', cx: 0, cy: -26, r: 14 }, g);
     mk('path', { class: 'drop', d: 'M0 0C-4 -9 -14 -14 -14 -26A14 14 0 1 1 14 -26C14 -14 4 -9 0 0Z' }, body);
     mk('circle', { class: 'plate', cx: 0, cy: -26, r: 9.6 }, body);
     mk('path', { class: 'glyph', d: GLYPH[w.kind] }, body);

@@ -30,11 +30,11 @@
     const w = P.byId[id]; if (!w) return;
     current = id;
     shell();
-    const wip = w.status === 'wip', col = P.colorOf(w);
+    const pre = w.kind === 'preprint', col = P.colorOf(w);
 
     const chips = h('div', 'chips');
-    chips.append(chip(wip ? 'In progress' : 'Finished', wip ? 'yel' : col));
-    chips.append(chip(P.KIND[w.kind]));
+    chips.append(chip(P.KIND[w.kind] + (pre ? ' · under review' : ''), col));
+    if (w.cv) chips.append(chip('CV ' + w.cv));
     chips.append(chip(w.lead ? 'Lead author' : 'Co-author'));
     if (w.rank) chips.append(chip('Venue rank ' + RANK[w.rank]));
     card.append(chips);
@@ -45,15 +45,16 @@
     card.append(h('p', '', w.desc));
 
     const meta = h('div', 'meta');
+    if (w.authors) meta.append(row('Authors', w.authors.join(', ')));
     meta.append(row('Area', AREA[w.area]));
     meta.append(row('Where', w.place ? w.place.name : 'Venue location to be announced'));
     if (w.tags && w.tags.length) { const t = h('div', 'chips'); w.tags.forEach(x => t.append(chip(x, 'lav'))); const d = h('div'); d.append(h('b', '', 'Tags'), t); meta.append(d); }
     card.append(meta);
 
     const acts = h('div', 'card-actions');
-    if (w.href) { const a = h('a', 'btn primary small', (w.linkLabel || 'Open') + ' →'); a.href = w.href; a.target = '_blank'; a.rel = 'noreferrer'; acts.append(a); }
+    (w.links || []).forEach((l, i) => { const a = h('a', 'btn small' + (i ? '' : ' primary'), l.label + ' →'); a.href = l.href; a.target = '_blank'; a.rel = 'noreferrer'; acts.append(a); });
     if (w.place && !(opts && opts.from === 'map')) { const b = h('button', 'btn small', 'Show on map'); b.type = 'button'; b.addEventListener('click', () => { close(); P.map.flyTo(id); }); acts.append(b); }
-    if (!(opts && opts.from === 'tank')) { const b = h('button', 'btn small', 'Find in habitat'); b.type = 'button'; b.addEventListener('click', () => { close(); P.tank.focus(id); }); acts.append(b); }
+    if (window.IS_PUB(w) && !(opts && opts.from === 'stage')) { const b = h('button', 'btn small', 'Find the cat'); b.type = 'button'; b.addEventListener('click', () => { close(); P.scene.focusDancer(id); }); acts.append(b); }
     card.append(acts);
 
     show();

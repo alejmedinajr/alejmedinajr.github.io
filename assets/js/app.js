@@ -24,14 +24,15 @@
   /* publications */
   const pubs = $('#pubs');
   if (pubs) window.PUBS.forEach(p => {
+    if (p.group) { const gh = h('div', 'sub-h'); gh.append(h('h3', '', p.group)); pubs.append(gh); return; }
     const row = h('article', 'pub glass');
     row.append(h('div', 'yr', String(p.year)));
     const ref = h('div', 'ref');
     p.authors.forEach(t => ref.append(h('span', t === 'Alejandro Medina' ? 'me' : '', t)));
     ref.append(document.createTextNode('. ' + p.year + '. '));
     const a = h('a', 't', p.title); a.href = p.href; a.target = '_blank'; a.rel = 'noreferrer'; ref.append(a);
-    ref.append(document.createTextNode('. In '), h('em', '', p.venue), document.createTextNode('. ' + p.rest + ' '));
-    const d = h('a', 'doi', p.doi); d.href = p.doi; d.target = '_blank'; d.rel = 'noreferrer'; ref.append(d);
+    ref.append(document.createTextNode('. ' + (p.rest ? 'In ' : '')), h('em', '', p.venue), document.createTextNode('. ' + p.rest + ' '));
+    if (p.doi) { const d = h('a', 'doi', p.doi); d.href = p.doi; d.target = '_blank'; d.rel = 'noreferrer'; ref.append(d); }
     row.append(ref);
     const b = h('button', 'link-btn', 'Details'); b.type = 'button'; b.addEventListener('click', () => P.cards.open(p.work)); row.append(b);
     pubs.append(row);
@@ -40,10 +41,10 @@
   /* presentations */
   const talks = $('#talks');
   if (talks) window.TALKS.forEach(g => {
-    const box = h('div', 'talk-group glass'); box.append(h('div', 'yr', String(g.year)));
+    const box = h('div', 'talk-group glass'); box.append(h('div', 'yr', g.head));
     const ul = h('ul');
     g.items.forEach(i => {
-      const li = h('li'); li.append(document.createTextNode(i.text + ' '));
+      const li = h('li'); li.append(h('span', 'cvid', i.cv + ' · ' + i.year + '  '), document.createTextNode(i.text + ' '));
       if (i.award) li.append(h('span', 'award-tag', i.award));
       if (i.work) { const b = h('button', 'link-btn', 'Details'); b.type = 'button'; b.style.marginLeft = '8px'; b.addEventListener('click', () => P.cards.open(i.work)); li.append(b); }
       ul.append(li);
